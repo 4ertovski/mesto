@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Леся Савченко">
+    <title>Место</title>
+    <!--подключение стилей-->
+   <!-- <link rel="stylesheet" href="./pages/index.css"> -->
+    <link rel="stylesheet" href="./vendor/normalize.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./vendor/fonts/fonts.css">
+  </head>
+  <body class="page">
+    <!--Header-->
+    <header class="header">
+      <img class="header__logo" src="./images/Mesto.png" alt="логотип Место.">
+    </header>
+    <main class="main">
+    <!--Profile-->
+    <section class="profile">
+      <img class="profile__avatar" src="./images/kusto.jpg" alt="Фото профиля.">
+      <div class="profile__info">
+        <div class="profile__wrapper">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button class="profile__button profile__button_active_edit button" type="button"></button>
+      </div>
+        <p class="profile__definition">Исследователь океана</p>
+      </div>
+      <button class="profile__button profile__button_active_add button" type="button"></button>
+    </section>
+    <!--Elements-->
+    <section class="elements">
+      <li class="element">
+        <img class="element__item" src="./images/karachaevsk_element_item.png" alt="">
+        <div class="element__wrapper">
+        <h2 class="element__subject">Карачаевск</h2>
+        <div class="element__likes">
+        <button class="element__like-button button" type="button"></button>
+        <!--<button class="element__like-button_active button" type="button"></button>-->>
+      </div>
+      </div>
+      </li>
+      <li class="element">
+        <img class="element__item" src="./images/elbrus_element_item.png" alt="">
+        <div class="element__wrapper">
+        <h2 class="element__subject">Гора Эльбрус</h2>
+        <div class="element__likes">
+        <button class="element__like-button button" type="button"></button>
+        <!--<button class="element__like-button_active button" type="button"></button>-->>
+        </div>
+      </div>
+      </li>
+      <li class="element">
+        <img class="element__item" src="./images/dombai_element_item.png" alt="">
+        <div class="element__wrapper">
+        <h2 class="element__subject">Домбай</h2>
+        <div class="element__likes">
+        <button class="element__like-button button" type="button"></button>
+        <!--<button class="element__like-button_active button" type="button"></button>-->>
+      </div>
+      </div>
+      </li>
+    </section>
+  </main>
+    <!--Footer-->
+    <footer class="footer">
+    <p class="footer__copyright">&copy;2022 Mesto Russia</p>
+    </footer>
+
+<!--Popup-->
+<div class="popup">
+  <form class="popup__container" method="post" name="form-popup">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <input name="name-input" value="" class="popup__input popup__input_name" type="text" placeholder="Имя">
+      <input name="job-input" value="" class="popup__input popup__input_job" type="text" placeholder="Описание">
+      <button class="popup__button popup__button_active_submit" type="submit" value="save">Сохранить</button>
+      <button class="popup__button popup__button_active_exit" type="button" value="close">Закрыть</button>
+  </form>
+</div>
+<!--Open Popup-->
+
+<!--Close Popup-->
+
+<!--Edit form Elements-->
+<!--Add element-->
+<!--Open element-->
+<!--Like element-->
+<script src="./scripts/script.js"></script>
+  </body>
+</html>
