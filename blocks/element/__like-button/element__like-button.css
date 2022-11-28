@@ -10,7 +10,7 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
-}
+
 .element__like-button:hover {
   cursor: pointer;
   opacity: 0.5;
