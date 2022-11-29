@@ -16,16 +16,6 @@
 @media (max-width: 800px) {
 .profile__definition {
   margin: 16px 0 0 0;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 336px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  width: 100%;
-  line-height: 22px;
-  transition: .7s ease;
 }
 }
 @media (max-width: 620px) {
@@ -37,5 +27,6 @@
 @media (max-width: 500px) {
   .profile__definition {
     font-size: 14px;
+    padding: 0;
   }
   }

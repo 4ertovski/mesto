@@ -25,7 +25,6 @@
 
 @media (max-width: 620px) {
   .profile__button_active_add {
-    width: 100%;
-    max-width: 282px;
+    width: 282px;
   }
 }
