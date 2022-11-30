@@ -6,6 +6,7 @@
   background-size: contain;
   border: none;
   display: flex;
+  background-color: transparent;
 }
 @media (max-width: 800px) {
   .profile__button_active_edit {

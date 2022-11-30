@@ -4,8 +4,6 @@
   background-position: center;
   transition: .2s;
   outline: none;
-  background-repeat: no-repeat;
-  background-color: transparent;
 }
 .profile__button:hover {
   opacity: .6;
