@@ -4,8 +4,8 @@ const buttonClose = document.querySelector ('.popup__button_active_exit');
 const profileName = document.querySelector ('.profile__name');
 const profileTitle = document.querySelector ('.profile__definition');
 const editForm = document.querySelector ('.popup__form');
-const nameInput = editForm.querySelector ('.popup__input-name');
-const titleInput =  editForm.querySelector ('.popup__input-title');
+const nameInput = editForm.querySelector ('.popup__input_profile_name');
+const titleInput =  editForm.querySelector ('.popup__input_profile_title');
 // Открыть Popup
 function openPopup () {
   popup.classList.add ('popup_opened');

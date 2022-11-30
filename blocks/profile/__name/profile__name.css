@@ -20,7 +20,6 @@
 @media (max-width: 600px) {
   .profile__name {
     margin: 0 10px 14px 0;
-    white-space: nowrap;
     text-overflow: "";
   }
 }

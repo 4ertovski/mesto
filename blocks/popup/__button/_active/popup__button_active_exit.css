@@ -1,12 +1,10 @@
 .popup__button_active_exit {
-  font-weight: 400;
   position: absolute;
   right: -32px;
   top: -32px;
   background-image: url('../../../../images/Close_Icon_popup.svg');
   font-size: 0;
   color: white;
-  border: none;
   max-width: 32px;
   width: 100%;
   min-height: 32px;
