@@ -12,7 +12,7 @@
    <body class="page">
       <!--Header-->
       <header class="header">
-         <img class="header__logo" src="./images/Mesto.png" alt="логотип Место.">
+         <img class="header__logo" src="./images/Mesto_header_logo.svg" alt="логотип Место.">
       </header>
       <main class="main">
          <!--Profile-->
@@ -21,71 +21,71 @@
             <div class="profile__info">
                <div class="profile__wrapper">
                   <h1 class="profile__name">Жак-Ив Кусто</h1>
-                  <button class="profile__button profile__button_active_edit button" type="button"></button>
+                  <button class="profile__button profile__button_active_edit" type="button"></button>
                </div>
                <p class="profile__definition">Исследователь океана</p>
             </div>
-            <button class="profile__button profile__button_active_add button" type="button"></button>
+            <button class="profile__button profile__button_active_add" type="button"></button>
          </section>
          <!--Elements-->
          <section class="elements">
             <div class="element">
-               <img class="element__item" src="./images/karachaevsk_element_item.png" alt="Старинный замок в лесных зарослях.">
+               <img class="element__item" src="./images/Karachaevsk_element.jpg" alt="Старинный замок в лесных зарослях.">
                <div class="element__wrapper">
                   <h2 class="element__subject">Карачаевск</h2>
                   <div class="element__likes">
-                     <button class="element__like-button button" type="button"></button>
-                     <!--<button class="element__like-button_active button" type="button"></button>-->
+                     <button class="element__like-button" type="button"></button>
+                     <!--<button class="element__like-button_active" type="button"></button>-->
                   </div>
                </div>
             </div>
             <div class="element">
-               <img class="element__item" src="./images/elbrus_element_item.png" alt="Равнина на закате.">
+               <img class="element__item" src="./images/Elbrus_element.jpg" alt="Равнина на закате.">
                <div class="element__wrapper">
                   <h2 class="element__subject">Гора Эльбрус</h2>
                   <div class="element__likes">
-                     <button class="element__like-button button" type="button"></button>
-                     <!--<button class="element__like-button_active button" type="button"></button>-->
+                     <button class="element__like-button" type="button"></button>
+                     <!--<button class="element__like-button_active" type="button"></button>-->
                   </div>
                </div>
             </div>
             <div class="element">
-               <img class="element__item" src="./images/dombai_element_item.png" alt="Гора со снегом и деревьями.">
+               <img class="element__item" src="./images/dombai_element.jpg" alt="Гора со снегом и деревьями.">
                <div class="element__wrapper">
                   <h2 class="element__subject">Домбай</h2>
                   <div class="element__likes">
-                     <button class="element__like-button button" type="button"></button>
-                     <!--<button class="element__like-button_active button" type="button"></button>-->
+                     <button class="element__like-button" type="button"></button>
+                     <!--<button class="element__like-button_active" type="button"></button>-->
                   </div>
                </div>
             </div>
             <div class="element">
-               <img class="element__item" src="./images/elbrus_element_item.png" alt="Равнина на закате.">
+               <img class="element__item" src="./images/Elbrus_element.jpg" alt="Равнина на закате.">
                <div class="element__wrapper">
                   <h2 class="element__subject">Гора Эльбрус</h2>
                   <div class="element__likes">
-                     <button class="element__like-button button" type="button"></button>
-                     <!--<button class="element__like-button_active button" type="button"></button>-->
+                     <button class="element__like-button" type="button"></button>
+                     <!--<button class="element__like-button_active" type="button"></button>-->
                   </div>
                </div>
             </div>
             <div class="element">
-               <img class="element__item" src="./images/dombai_element_item.png" alt="Гора со снегом и деревьями.">
+               <img class="element__item" src="./images/dombai_element.jpg" alt="Гора со снегом и деревьями.">
                <div class="element__wrapper">
                   <h2 class="element__subject">Домбай</h2>
                   <div class="element__likes">
-                     <button class="element__like-button button" type="button"></button>
-                     <!--<button class="element__like-button_active button" type="button"></button>-->
+                     <button class="element__like-button" type="button"></button>
+                     <!--<button class="element__like-button_active" type="button"></button>-->
                   </div>
                </div>
             </div>
             <div class="element">
-               <img class="element__item" src="./images/karachaevsk_element_item.png" alt="Старинный замок в лесных зарослях.">
+               <img class="element__item" src="./images/Karachaevsk_element.jpg" alt="Старинный замок в лесных зарослях.">
                <div class="element__wrapper">
                   <h2 class="element__subject">Карачаево-Черкессия</h2>
                   <div class="element__likes">
-                     <button class="element__like-button button" type="button"></button>
-                     <!--<button class="element__like-button_active button" type="button"></button>-->
+                     <button class="element__like-button" type="button"></button>
+                     <!--<button class="element__like-button_active" type="button"></button>-->
                   </div>
                </div>
             </div>
@@ -96,15 +96,17 @@
          <p class="footer__copyright">&copy;2022 Mesto Russia</p>
       </footer>
       <!--Popup-->
-      <div class="popup">
-         <form class="popup__container" method="post" name="form-popup">
+    <div class="popup">
+      <div class="popup__container">
+            <form class="popup__form" method="post" name="form-popup"></form>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <input name="name-input" value="" class="popup__input popup__input_name" type="text" placeholder="Имя">
-            <input name="title-input" value="" class="popup__input popup__input_title" type="text" placeholder="Описание">
+            <input name="name-input" value="" class="popup__input popup__input-name" type="text" placeholder="Имя">
+            <input name="title-input" value="" class="popup__input popup__input-title" type="text" placeholder="Описание">
             <button class="popup__button popup__button_active_submit" type="submit" value="save">Сохранить</button>
             <button class="popup__button popup__button_active_exit" type="button" value="close">Закрыть</button>
          </form>
       </div>
+   </div>
       <script src="./scripts/script.js"></script>
    </body>
 </html>

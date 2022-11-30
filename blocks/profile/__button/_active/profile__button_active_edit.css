@@ -4,16 +4,8 @@
   height: 24px;
   background-image: url('../../../../images/Edit_Button_profile.svg');
   background-size: contain;
-  background-color: transparent;
-  background-repeat: no-repeat;
   border: none;
   display: flex;
-  transition: .2s;
-  outline: none;
-}
-.profile__button_active_edit:hover {
-  opacity: .6;
-  cursor: pointer;
 }
 @media (max-width: 800px) {
   .profile__button_active_edit {

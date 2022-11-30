@@ -1,5 +1,13 @@
 .profile__button {
-  background-color: #000000;
+  background-color: rgba(0,0,0,0.5);
   background-repeat: no-repeat;
   background-position: center;
+  transition: .2s;
+  outline: none;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+.profile__button:hover {
+  opacity: .6;
+  cursor: pointer;
 }

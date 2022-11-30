@@ -2,27 +2,17 @@
   padding: 0;
   width: 150px;
   height: 50px;
-  background-color: transparent;
   border: 2px solid #fff;
   border-radius: 2px;
   background-image: url('../../../../images/Add_button_profile.svg');
   background-size: 22px;
   background-position: center;
-  background-repeat: no-repeat;
-  transition: .2s;
-  outline: none;
 }
-.profile__button_active_add:hover {
-  opacity: .6;
-  cursor: pointer;
-}
-
 @media (max-width: 800px) {
   .profile__button_active_add{
     background-size: 16px;
   }
 }
-
 @media (max-width: 620px) {
   .profile__button_active_add {
     width: 282px;

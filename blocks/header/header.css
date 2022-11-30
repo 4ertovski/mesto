@@ -1,8 +1,7 @@
 .header {
   margin: 0 auto;
   max-width: 880px;
-  opacity: 0.7;
-  border-bottom: 1px solid #545454;
+  border-bottom: 1px solid rgba(84,84,84,.7);
   padding: 45px 0 41px 0;
 }
 @media (max-width: 425px) {

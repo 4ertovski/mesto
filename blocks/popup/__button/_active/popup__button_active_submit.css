@@ -8,9 +8,6 @@
   color: #fff;
   background: #000;
   border-radius: 2px;
-  box-shadow: none;
-  border: none;
-  cursor: pointer;
 }
 
 .popup__button_active_submit:hover {

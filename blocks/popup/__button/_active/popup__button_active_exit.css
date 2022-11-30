@@ -5,9 +5,7 @@
   top: -32px;
   background-image: url('../../../../images/Close_Icon_popup.svg');
   font-size: 0;
-  box-shadow: none;
   color: white;
-  cursor: pointer;
   border: none;
   max-width: 32px;
   width: 100%;

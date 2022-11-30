@@ -3,6 +3,3 @@
   max-width: 282px;
   object-fit: cover;
 }
-.element__item:hover {
-  cursor: pointer;
-}

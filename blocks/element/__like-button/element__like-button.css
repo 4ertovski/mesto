@@ -9,6 +9,9 @@
   background-color: #fff;
   background-size: contain;
   background-repeat: no-repeat;
+  padding-bottom: 12px;
+  display: flex;
+  align-self: center;
 }
 
 .element__like-button:hover {
