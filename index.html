@@ -21,74 +21,62 @@
             <div class="profile__info">
                <div class="profile__wrapper">
                   <h1 class="profile__name">Жак-Ив Кусто</h1>
-                  <button class="profile__button profile__button_active_edit" type="button"></button>
+                  <button class="profile__button profile__button_active_edit" aria-label="Редактировать" type="button"></button>
                </div>
                <p class="profile__definition">Исследователь океана</p>
             </div>
-            <button class="profile__button profile__button_active_add" type="button"></button>
+            <button class="profile__button profile__button_active_add" aria-label="Добавить" type="button"></button>
          </section>
          <!--Elements-->
          <section class="elements">
-            <div class="element">
+            <article class="element">
                <img class="element__item" src="./images/Karachaevsk_element.jpg" alt="Старинный замок в лесных зарослях.">
                <div class="element__wrapper">
                   <h2 class="element__subject">Карачаевск</h2>
-                  <div class="element__likes">
-                     <button class="element__like-button" type="button"></button>
+                     <button class="element__like-button" aria-label="Нравится" type="button"></button>
                      <!--<button class="element__like-button_active" type="button"></button>-->
-                  </div>
                </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                <img class="element__item" src="./images/Elbrus_element.jpg" alt="Равнина на закате.">
                <div class="element__wrapper">
                   <h2 class="element__subject">Гора Эльбрус</h2>
-                  <div class="element__likes">
-                     <button class="element__like-button" type="button"></button>
+                     <button class="element__like-button" aria-label="Нравится" type="button"></button>
                      <!--<button class="element__like-button_active" type="button"></button>-->
-                  </div>
                </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                <img class="element__item" src="./images/dombai_element.jpg" alt="Гора со снегом и деревьями.">
                <div class="element__wrapper">
                   <h2 class="element__subject">Домбай</h2>
-                  <div class="element__likes">
-                     <button class="element__like-button" type="button"></button>
+                     <button class="element__like-button" aria-label="Нравится" type="button"></button>
                      <!--<button class="element__like-button_active" type="button"></button>-->
-                  </div>
                </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                <img class="element__item" src="./images/Elbrus_element.jpg" alt="Равнина на закате.">
                <div class="element__wrapper">
                   <h2 class="element__subject">Гора Эльбрус</h2>
-                  <div class="element__likes">
-                     <button class="element__like-button" type="button"></button>
+                     <button class="element__like-button" aria-label="Нравится" type="button"></button>
                      <!--<button class="element__like-button_active" type="button"></button>-->
-                  </div>
                </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                <img class="element__item" src="./images/dombai_element.jpg" alt="Гора со снегом и деревьями.">
                <div class="element__wrapper">
                   <h2 class="element__subject">Домбай</h2>
-                  <div class="element__likes">
-                     <button class="element__like-button" type="button"></button>
+                     <button class="element__like-button" aria-label="Нравится" type="button"></button>
                      <!--<button class="element__like-button_active" type="button"></button>-->
-                  </div>
                </div>
-            </div>
-            <div class="element">
+            </article>
+            <article class="element">
                <img class="element__item" src="./images/Karachaevsk_element.jpg" alt="Старинный замок в лесных зарослях.">
                <div class="element__wrapper">
                   <h2 class="element__subject">Карачаево-Черкессия</h2>
-                  <div class="element__likes">
-                     <button class="element__like-button" type="button"></button>
+                     <button class="element__like-button" aria-label="Нравится" type="button"></button>
                      <!--<button class="element__like-button_active" type="button"></button>-->
-                  </div>
                </div>
-            </div>
+            </article>
          </section>
       </main>
       <!--Footer-->
@@ -98,12 +86,12 @@
       <!--Popup-->
     <div class="popup">
       <div class="popup__container">
-            <form class="popup__form" method="post" name="form-popup"></form>
+            <form class="popup__form" method="post" name="form-popup">
             <h2 class="popup__title">Редактировать профиль</h2>
             <input name="name-input" value="" class="popup__input popup__input-name" type="text" placeholder="Имя">
             <input name="title-input" value="" class="popup__input popup__input-title" type="text" placeholder="Описание">
-            <button class="popup__button popup__button_active_submit" type="submit" value="save">Сохранить</button>
-            <button class="popup__button popup__button_active_exit" type="button" value="close">Закрыть</button>
+            <button class="popup__button popup__button_active_submit" type="submit" aria-label="Сохранить" value="save">Сохранить</button>
+            <button class="popup__button popup__button_active_exit" type="button" aria-label="Закрыть" value="close">Закрыть</button>
          </form>
       </div>
    </div>
