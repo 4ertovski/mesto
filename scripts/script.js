@@ -6,24 +6,24 @@ const profileTitle = document.querySelector ('.profile__definition');
 const editForm = document.querySelector ('.popup__form');
 const nameInput = editForm.querySelector ('.popup__input-name');
 const titleInput =  editForm.querySelector ('.popup__input-title');
-
+// Открыть Popup
 function openPopup () {
   popup.classList.add ('popup_opened');
   nameInput.value = profileName.textContent;
   titleInput.value = profileTitle.textContent;
 }
-
+// Закрыть Popup
 function closePopup ()  {
 popup.classList.remove ('popup_opened');
 }
-
+// Заполнить форму 
 function formSubmitHandler (evt) {
     evt.preventDefault();
     profileName.textContent = `${nameInput.value}`;
     profileTitle.textContent = `${titleInput.value}`;
     closePopup ();
 }
-
+// Слушатели событий 
 buttonEditOpen.addEventListener ('click', openPopup);
 buttonClose.addEventListener ('click', closePopup);
 editForm.addEventListener('submit', formSubmitHandler);
