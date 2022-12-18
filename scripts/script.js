@@ -18,9 +18,9 @@ const templateCard = document.querySelector('#card-template').content.querySelec
 что мы, при необходимости, возьмём content и вставим, куда надо.*/
 
 //popup
-const popupProfileEdit = document.querySelector('.popup__profile_edit'); //попап с возможностью исправить информацию о пользователе
-const popupElementAdd = document.querySelector('.popup__element_add'); //попап позволяющий добавить фото
-const popupItemOpen = document.querySelector(".popup__item_open"); //попап открывающий фото
+const popupProfileEdit = document.querySelector('.popup__profile-edit'); //попап с возможностью исправить информацию о пользователе
+const popupElementAdd = document.querySelector('.popup__element-add'); //попап позволяющий добавить фото
+const popupItemOpen = document.querySelector(".popup__item-open"); //попап открывающий фото
 
 
 const profileTitle = popupProfileEdit.querySelector('.popup__title');
@@ -177,7 +177,7 @@ allCloseButtons.forEach(function (elem){
 
 ///Кнопка "Сохранить" в редактировании профиля
 
-const saveProfileButton = document.querySelector('.popup__button_active_save_profile');
+const saveProfileButton = document.querySelector('.popup__button_active_save-profile');
 
 //Информация на странице
 const mainName = document.querySelector('.profile__name');
@@ -198,7 +198,7 @@ function saveProfileInfo(){
 saveProfileButton.addEventListener('click', saveProfileInfo)
 
 ///Добавление новых картинок
-const saveCardButton = document.querySelector('.popup__button_active_save_card');
+const saveCardButton = document.querySelector('.popup__button_active_save-card');
 
 const cardTitle = document.querySelector('.popup__input_element_name');
 const cardURL = document.querySelector('.popup__input_element_url');

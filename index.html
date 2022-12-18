@@ -35,7 +35,7 @@
          <p class="footer__copyright">&copy;2022 Mesto Russia</p>
       </footer>
       <!--Popup исправление имени и рода деятельности-->
-      <div class="popup popup__profile_edit">
+      <div class="popup popup__profile-edit">
          <div class="popup__container">
             <form class="popup__form popup__form_profile" method="post" name="profile">
                <h2 class="popup__title">Редактировать профиль</h2>
@@ -43,13 +43,13 @@
                <input class="popup__input popup__input_profile_title" name="title-input" value="" type="text" placeholder="Описание">
                <!--     Добавила класс, чтобы отделить этот сейв от добавления карточки   -->
                <!--     Изменила сабмит на баттон, чтобы страница не перезагружалась     -->
-               <button class="popup__button popup__button_active_submit popup__button_active_save_profile" type="button" aria-label="Сохранить" value="save">Сохранить</button>
+               <button class="popup__button popup__button_active_submit popup__button_active_save-profile" type="button" aria-label="Сохранить" value="save">Сохранить</button>
                <button class="popup__button popup__button_active_exit" type="button" aria-label="Закрыть" value="close">Закрыть</button>
             </form>
          </div>
       </div>
       <!--Popup добавление карточки пользователем-->
-      <div class="popup popup__element_add">
+      <div class="popup popup__element-add">
          <div class="popup__container">
             <form class="popup__form popup__form_element" method="post" name="card">
                <h2 class="popup__title">Новое место</h2>
@@ -57,13 +57,13 @@
                <input class="popup__input popup__input_element_url" name="url-input" value="" type="text" placeholder="Ссылка на картинку">
                <!--     Добавила класс, чтобы отделить этот сейв от редактирования профиля     -->
                <!--     Изменила сабмит на баттон, чтобы страница не перезагружалась     -->
-               <button class="popup__button popup__button_active_submit popup__button_active_save_card" type="button" aria-label="Создать" value="save">Создать</button>
+               <button class="popup__button popup__button_active_submit popup__button_active_save-card" type="button" aria-label="Создать" value="save">Создать</button>
                <button class="popup__button popup__button_active_exit" type="button" aria-label="Закрыть" value="close">Закрыть</button>
             </form>
          </div>
       </div>
       <!--Popup открытие картинки-->
-      <div class="popup popup__item_open">
+      <div class="popup popup__item-open">
          <div class="popup__item-container">
             <button class="popup__button popup__button_item_exit" type="button" aria-label="Закрыть" value="close">Закрыть</button>
             <img class="popup__item" alt="открытая картинка из галлереи.">
