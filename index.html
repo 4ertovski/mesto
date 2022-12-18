@@ -7,7 +7,6 @@
       <title>Место</title>
       <!--подключение стилей-->
       <link rel="stylesheet" href="./pages/index.css">
-  
    </head>
    <body class="page">
       <!--Header-->
@@ -28,73 +27,60 @@
             <button class="profile__button profile__button_active_add" aria-label="Добавить" type="button"></button>
          </section>
          <!--Elements-->
-         <section class="elements">
-            <article class="element">
-               <img class="element__item" src="./images/Karachaevsk_element.jpg" alt="Старинный замок в лесных зарослях.">
-               <div class="element__wrapper">
-                  <h2 class="element__subject">Карачаевск</h2>
-                     <button class="element__like-button" aria-label="Нравится" type="button"></button>
-                     <!--<button class="element__like-button_active" type="button"></button>-->
-               </div>
-            </article>
-            <article class="element">
-               <img class="element__item" src="./images/Elbrus_element.jpg" alt="Равнина на закате.">
-               <div class="element__wrapper">
-                  <h2 class="element__subject">Гора Эльбрус</h2>
-                     <button class="element__like-button" aria-label="Нравится" type="button"></button>
-                     <!--<button class="element__like-button_active" type="button"></button>-->
-               </div>
-            </article>
-            <article class="element">
-               <img class="element__item" src="./images/dombai_element.jpg" alt="Гора со снегом и деревьями.">
-               <div class="element__wrapper">
-                  <h2 class="element__subject">Домбай</h2>
-                     <button class="element__like-button" aria-label="Нравится" type="button"></button>
-                     <!--<button class="element__like-button_active" type="button"></button>-->
-               </div>
-            </article>
-            <article class="element">
-               <img class="element__item" src="./images/Elbrus_element.jpg" alt="Равнина на закате.">
-               <div class="element__wrapper">
-                  <h2 class="element__subject">Гора Эльбрус</h2>
-                     <button class="element__like-button" aria-label="Нравится" type="button"></button>
-                     <!--<button class="element__like-button_active" type="button"></button>-->
-               </div>
-            </article>
-            <article class="element">
-               <img class="element__item" src="./images/dombai_element.jpg" alt="Гора со снегом и деревьями.">
-               <div class="element__wrapper">
-                  <h2 class="element__subject">Домбай</h2>
-                     <button class="element__like-button" aria-label="Нравится" type="button"></button>
-                     <!--<button class="element__like-button_active" type="button"></button>-->
-               </div>
-            </article>
-            <article class="element">
-               <img class="element__item" src="./images/Karachaevsk_element.jpg" alt="Старинный замок в лесных зарослях.">
-               <div class="element__wrapper">
-                  <h2 class="element__subject">Карачаево-Черкессия</h2>
-                     <button class="element__like-button" aria-label="Нравится" type="button"></button>
-                     <!--<button class="element__like-button_active" type="button"></button>-->
-               </div>
-            </article>
+         <section class="elements" aria-label="Публикации">
          </section>
       </main>
       <!--Footer-->
       <footer class="footer">
          <p class="footer__copyright">&copy;2022 Mesto Russia</p>
       </footer>
-      <!--Popup-->
-    <div class="popup">
-      <div class="popup__container">
-            <form class="popup__form" method="post" name="form-popup">
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <input name="name-input" value="" class="popup__input popup__input_profile_name" type="text" placeholder="Имя">
-            <input name="title-input" value="" class="popup__input popup__input_profile_title" type="text" placeholder="Описание">
-            <button class="popup__button popup__button_active_submit" type="submit" aria-label="Сохранить" value="save">Сохранить</button>
-            <button class="popup__button popup__button_active_exit" type="button" aria-label="Закрыть" value="close">Закрыть</button>
-         </form>
+      <!--Popup исправление имени и рода деятельности-->
+      <div class="popup popup__profile_edit">
+         <div class="popup__container">
+            <form class="popup__form popup__form_profile" method="post" name="profile">
+               <h2 class="popup__title">Редактировать профиль</h2>
+               <input class="popup__input popup__input_profile_name" name="name-input" value="" type="text" placeholder="Имя">
+               <input class="popup__input popup__input_profile_title" name="title-input" value="" type="text" placeholder="Описание">
+               <!--     Добавила класс, чтобы отделить этот сейв от добавления карточки   -->
+               <!--     Изменила сабмит на баттон, чтобы страница не перезагружалась     -->
+               <button class="popup__button popup__button_active_submit popup__button_active_save_profile" type="button" aria-label="Сохранить" value="save">Сохранить</button>
+               <button class="popup__button popup__button_active_exit" type="button" aria-label="Закрыть" value="close">Закрыть</button>
+            </form>
+         </div>
       </div>
-   </div>
+      <!--Popup добавление карточки пользователем-->
+      <div class="popup popup__element_add">
+         <div class="popup__container">
+            <form class="popup__form popup__form_element" method="post" name="card">
+               <h2 class="popup__title">Новое место</h2>
+               <input class="popup__input popup__input_element_name" name="image-name" value="" type="text" placeholder="Название">
+               <input class="popup__input popup__input_element_url" name="url-input" value="" type="text" placeholder="Ссылка на картинку">
+               <!--     Добавила класс, чтобы отделить этот сейв от редактирования профиля     -->
+               <!--     Изменила сабмит на баттон, чтобы страница не перезагружалась     -->
+               <button class="popup__button popup__button_active_submit popup__button_active_save_card" type="button" aria-label="Создать" value="save">Создать</button>
+               <button class="popup__button popup__button_active_exit" type="button" aria-label="Закрыть" value="close">Закрыть</button>
+            </form>
+         </div>
+      </div>
+      <!--Popup открытие картинки-->
+      <div class="popup popup__item_open">
+         <div class="popup__item-container">
+            <button class="popup__button popup__button_item_exit" type="button" aria-label="Закрыть" value="close">Закрыть</button> <!--NOTE: нужно ли менять класс для картинки?-->
+            <img class="popup__item" alt="открытая картинка из галлереи.">
+            <h2 class="popup__item-subject"></h2>
+         </div>
+      </div>
+      <!--Добавление карточек из коробки-->
+      <template id="card-template">
+         <article class="element">
+            <button class="element__trash-button" aria-label="Удалить" type="button"></button>
+            <img class="element__item" src="" alt="">
+            <div class="element__wrapper">
+               <h2 class="element__subject"></h2>
+               <button class="element__like-button" aria-label="Нравится" type="button"></button>
+            </div>
+         </article>
+      </template>
       <script src="./scripts/script.js"></script>
    </body>
 </html>

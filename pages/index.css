@@ -30,6 +30,8 @@
 @import url('../blocks/element/__like-button/element__like-button.css');
 @import url('../blocks/element/__like-button/_active/element__like-button_active.css');
 @import url('../blocks/element/__item/element__item.css');
+@import url('../blocks/element/__trash-button/element__trash-button.css');
+
 
 /*footer*/
 @import url('../blocks/footer/footer.css');
@@ -44,8 +46,10 @@
 @import url('../blocks/popup/__button/popup__button.css');
 @import url('../blocks/popup/__button/_active/popup__button_active_exit.css');
 @import url('../blocks/popup/__button/_active/popup__button_active_submit.css');
-
- /*Ольга, добрый день! спасибо вам за подробный разбор, признаюсь, с пунктом ключ-значение у меня возникли сложности))
-  буду вам благодарна, если после всех итераций ревью (если они закончатся успешно), вы сможете посоветовать какие-то статьи, 
-  которые помогут разобраться с тем, как добавлять в карточки картинки любого размера, чтобы при этом не разъезжалась верстка.*/
-
+@import url('../blocks/popup/__button/_item/popup__button_item_exit.css');
+@import url('../blocks/popup/__visual-effects/popup__visual-effects.css');
+@import url('../blocks/popup/__visual-effects/_type/popup__visual-effects_type_item.css');
+@import url('../blocks/popup/__item-container/popup__item-container.css');
+@import url('../blocks/popup/__item/popup__item.css');
+@import url('../blocks/popup/__item-subject/popup__item-subject.css');
+@import url('../blocks/popup/__button/_disabled/popup__button_disabled.css');
