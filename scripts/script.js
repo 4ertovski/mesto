@@ -18,9 +18,9 @@ const templateCard = document.querySelector('#card-template').content.querySelec
 что мы, при необходимости, возьмём content и вставим, куда надо.*/
 
 //popup
-const popupProfileEdit = document.querySelector('.popup__profile'); //попап с возможностью исправить информацию о пользователе
-const popupElementAdd = document.querySelector('.popup__element'); //попап позволяющий добавить фото
-const popupItemOpen = document.querySelector(".popup__image"); //попап открывающий фото
+const popupProfileEdit = document.querySelector('.popup_profile'); //попап с возможностью исправить информацию о пользователе
+const popupElementAdd = document.querySelector('.popup_element'); //попап позволяющий добавить фото
+const popupItemOpen = document.querySelector(".popup_item"); //попап открывающий фото
 
 
 const profileTitle = popupProfileEdit.querySelector('.popup__title');
