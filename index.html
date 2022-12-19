@@ -42,9 +42,9 @@
                <input class="popup__input popup__input_profile_name" name="name-input" value="" type="text" placeholder="Имя">
                <input class="popup__input popup__input_profile_title" name="title-input" value="" type="text" placeholder="Описание">
                <!--     Добавила класс, чтобы отделить этот сейв от добавления карточки   -->
-               <!--     Изменила сабмит на баттон, чтобы страница не перезагружалась     -->
-               <button class="popup__button popup__button_active_submit popup__button_active_save-profile" type="button" aria-label="Сохранить" value="save">Сохранить</button>
-               <button class="popup__button popup__button_active_exit" type="button" aria-label="Закрыть" value="close">Закрыть</button>
+               <button class="popup__button popup__button_active_submit popup__button_active_save-profile" type="submit" aria-label="Сохранить" value="save">Сохранить</button>
+               <button class="popup__button popup__button_active_exit popup__close" type="button" aria-label="Закрыть" value="close">Закрыть</button>
+               <!--     Добавила общий класс для крестика   -->
             </form>
          </div>
       </div>
@@ -56,16 +56,17 @@
                <input class="popup__input popup__input_element_name" name="image-name" value="" type="text" placeholder="Название">
                <input class="popup__input popup__input_element_url" name="url-input" value="" type="text" placeholder="Ссылка на картинку">
                <!--     Добавила класс, чтобы отделить этот сейв от редактирования профиля     -->
-               <!--     Изменила сабмит на баттон, чтобы страница не перезагружалась     -->
-               <button class="popup__button popup__button_active_submit popup__button_active_save-card" type="button" aria-label="Создать" value="save">Создать</button>
-               <button class="popup__button popup__button_active_exit" type="button" aria-label="Закрыть" value="close">Закрыть</button>
+               <button class="popup__button popup__button_active_submit popup__button_active_save-card" type="submit" aria-label="Создать" value="save">Создать</button>
+               <button class="popup__button popup__button_active_exit popup__close" type="button" aria-label="Закрыть" value="close">Закрыть</button>
+               <!--     Добавила общий класс для крестика   -->
             </form>
          </div>
       </div>
       <!--Popup открытие картинки-->
       <div class="popup popup_item">
          <div class="popup__item-container">
-            <button class="popup__button popup__button_item_exit" type="button" aria-label="Закрыть" value="close">Закрыть</button>
+            <button class="popup__button popup__button_item_exit popup__close" type="button" aria-label="Закрыть" value="close">Закрыть</button>
+            <!--     Добавила общий класс для крестика   -->
             <img class="popup__item" alt="открытая картинка из галлереи.">
             <h2 class="popup__item-subject"></h2>
          </div>

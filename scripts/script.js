@@ -2,11 +2,11 @@
 // Переменные:
 
 //profile 
-const formEditProfile = document.querySelector(".popup__form");
-const profileName = document.querySelector(".profile__name"); //имя пользователя
+const formEditProfile = document.querySelector(".popup__form_profile");
+
 /*метод querySelector() возвращает первый элемент (Element) документа, который соответствует указанному селектору или группе селекторов.
 Если совпадений не найдено, возвращает значение null.*/
-const profileDefinition = document.querySelector(".profile__definition"); //род деятельности
+
 const profileEdit = document.querySelector(".profile__button_active_edit"); //кнопка, открывающая попап с информацией о пользователе
 const profileAddButton = document.querySelector(".profile__button_active_add"); //кнопка, открывающая попап с возможностью добавления карточки
 
@@ -22,17 +22,13 @@ const popupProfileEdit = document.querySelector('.popup_profile'); //попап 
 const popupElementAdd = document.querySelector('.popup_element'); //попап позволяющий добавить фото
 const popupItemOpen = document.querySelector(".popup_item"); //попап открывающий фото
 
-
 const profileTitle = popupProfileEdit.querySelector('.popup__title');
-const profileNameInput = formEditProfile.querySelector('.popup__input_profile_name');
-const profileTitleInput = formEditProfile.querySelector('.popup__input_profile_title');
 
 const elementTitle = popupElementAdd.querySelector('.popup__title');
-const elementNameInput = document.querySelector('.popup__input_element_name');
-const elementLinkInput = document.querySelector('.popup__input_element_url'); 
 
 const itemOpenImage = document.querySelector('.popup__item');
 const itemOpenTitle = document.querySelector('.popup__item-subject');
+
 
 
 const initialCards = [{
@@ -61,7 +57,6 @@ const initialCards = [{
 }
 ];
 
-
 /// Открытие закрытие попапов
 function openPopup (popupElement) {
   popupElement.classList.add("popup_opened")
@@ -73,24 +68,42 @@ function closePopup (popupElement) {
 
 /// Открытие попапа просмотра картинок
 
-imageElemTitle = document.querySelector('.popup__item-subject');
-imageElemImage = document.querySelector('.popup__item');
+const imageElemTitle = document.querySelector('.popup__item-subject');
+const imageElemImage = document.querySelector('.popup__item');
 
 function openImage(item) {
     imageElemTitle.textContent = item.name;
     imageElemImage.src = item.link;
+    imageElemTitle.alt = item.name;
+
     openPopup(popupItemOpen);
 }
 
-const itemOpenButtonClose = document.querySelector('.popup__button_item_exit');
+// Функция для открытия попапа
 
-function closePopupListener(){
-  closePopup(currentPopup)
-  currentPopup = null;
+const profileName = document.querySelector(".profile__name"); //имя пользователя
+const profileDefinition = document.querySelector(".profile__definition"); //род деятельности
+const profileNameInput = formEditProfile.querySelector('.popup__input_profile_name');
+const profileTitleInput = formEditProfile.querySelector('.popup__input_profile_title');
+
+function openEditPopup(e){
+e.preventDefault();
+  profileNameInput.value = profileName.textContent;
+  profileTitleInput.value = profileDefinition.textContent;
+    openPopup(popupProfileEdit);
+};
+
+// Добавляем на кнопку событие, которое по клику вызывает функцию, показывающую попап
+profileEdit.addEventListener('click', openEditPopup);
+
+/// Кнопка добавления фотографии
+
+function  openAddPopup(){
+  openPopup(popupElementAdd)
+  //currentPopup = popupElementAdd;
 }
-itemOpenButtonClose.addEventListener("click", function () {
-  closePopup(popupItemOpen);
-});
+
+profileAddButton.addEventListener('click', openAddPopup);
 
 
 /// Функция создает массив по элементам
@@ -136,69 +149,21 @@ initialCards.forEach(function (item) {
   renderElement(item, cardsContainer);
 });
 
-//Объявляем текущий попап, для того чтобы при вызове функции closePopup(), автоматически определялось какой попап открыт.
- currentPopup = null; 
-
-///Кнопка редактирования профиля
-
-// Функция для открытия попапа
-function openEditPopup(){
-    openPopup(popupProfileEdit);
-    currentPopup = popupProfileEdit;
+// Изменение данных имени пользователя формы, preventDefault сбрасывает значения формы но дефолтных
+function saveProfileInfo(e) {
+  e.preventDefault();
+  profileName.textContent = profileNameInput.value;
+  profileDefinition.textContent = profileTitleInput.value;
+  closePopup(popupProfileEdit);
 }
-
-// Добавляем на кнопку событие, которое по клику вызывает функцию, показывающую попап
-profileEdit.addEventListener('click', openEditPopup);
-
-/// Кнопка добавления фотографии
-
-function  openAddPopup(){
-    openPopup(popupElementAdd)
-    currentPopup = popupElementAdd;
-}
-
-profileAddButton.addEventListener('click', openAddPopup);
-
-///Кнопка "Закрыть"
-
-//То же что и profileButtonExit, за исключением того что в этом случае находит все кнопки закрытия, а не только одну - самую первую.
-
-const allCloseButtons = document.querySelectorAll('.popup__button_active_exit');
-
-function closePopupListener(){
-    closePopup(currentPopup)
-    currentPopup = null;
-}
-
-//Добавляем каждой кнопке слушатель на клик и при клике вызываем вышестоящую функцию
-allCloseButtons.forEach(function (elem){
-    elem.addEventListener('click', closePopupListener)
-})
-
-///Кнопка "Сохранить" в редактировании профиля
-
-const saveProfileButton = document.querySelector('.popup__button_active_save-profile');
-
-//Информация на странице
-const mainName = document.querySelector('.profile__name');
-const mainDefinition = document.querySelector('.profile__definition');
-
-//Информация в форме редактирования
-const inputName = document.querySelector('.popup__input_profile_name');
-const inputDefinition = document.querySelector('.popup__input_profile_title')
-
-function saveProfileInfo(){
-    mainName.textContent = inputName.value; // Ставим имени на главной странице значение инпут поля
-    mainDefinition.textContent = inputDefinition.value; // Ставим области деятельности на главной странице значение инпут поля
-
-    closePopup(currentPopup); //Закрываем текущий попап при сохранении
-    currentPopup = null;
-}
-
-saveProfileButton.addEventListener('click', saveProfileInfo)
+popupProfileEdit.addEventListener("submit", saveProfileInfo);
 
 ///Добавление новых картинок
-const saveCardButton = document.querySelector('.popup__button_active_save-card');
+const saveCardButton = document.querySelector('.popup__button_active_save_card');
+
+const formAddCard = document.querySelector(".popup__form_element");
+
+// ф-ия сохранения карточки с данными в форму
 
 const cardTitle = document.querySelector('.popup__input_element_name');
 const cardURL = document.querySelector('.popup__input_element_url');
@@ -209,27 +174,30 @@ function saveCardInfo(){
     const item = {name,link}
     renderElement(item, cardsContainer);
 
-    closePopup(currentPopup);
-    currentPopup = null;
+    closePopup(popupElementAdd);
 }
 
-saveCardButton.addEventListener('click', saveCardInfo);
+formAddCard.addEventListener('submit', (e)=> {
+  e.preventDefault();
+  saveCardInfo();
+  e.target.reset();
+});
 
-//Закрытие поля при клике вне дива
+const popups = document.querySelectorAll('.popup')
 
-//Если попап не равен null, т.е. открыт - исполняем код, в противном случае ничего не делаем
-document.addEventListener('click', function(e){
-    if (currentPopup != null){
-        //Если элемент на который мы кликнули имеет класс 'popup'(этот класс есть только у внешней части попапа), тогда закрываем его, в противном случае ничего не делаем.
-        if (e.target.classList.contains('popup')){
-            //Если текущий попап не попал в клик - закрываем его
-            closePopup(currentPopup);
-            currentPopup = null;
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
         }
-    }
-})
+        if (evt.target.classList.contains('popup__close')) {
+          closePopup(popup)
+        }
+    })
+});
 
-// заметки на полях:
+
+/// заметки на полях:
 
 /*Метод Element.closest() возвращает ближайший родительский элемент (или сам элемент),
  который соответствует заданному CSS-селектору или null, если таковых элементов вообще нет.*/ 
