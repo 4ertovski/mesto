@@ -23,7 +23,6 @@ const popupElementAdd = document.querySelector('.popup_element'); //попап �
 const popupItemOpen = document.querySelector(".popup_item"); //попап открывающий фото
 
 const profileTitle = popupProfileEdit.querySelector('.popup__title');
-
 const elementTitle = popupElementAdd.querySelector('.popup__title');
 
 const itemOpenImage = document.querySelector('.popup__item');
@@ -72,9 +71,9 @@ const imageElemTitle = document.querySelector('.popup__item-subject');
 const imageElemImage = document.querySelector('.popup__item');
 
 function openImage(item) {
-    imageElemTitle.textContent = item.name;
-    imageElemImage.src = item.link;
-    imageElemTitle.alt = item.name;
+  imageElemTitle.textContent = item.name;
+  imageElemImage.src = item.link;
+  imageElemTitle.alt = item.name;
 
     openPopup(popupItemOpen);
 }
@@ -88,8 +87,8 @@ const profileTitleInput = formEditProfile.querySelector('.popup__input_profile_t
 
 function openEditPopup(e){
 e.preventDefault();
-  profileNameInput.value = profileName.textContent;
-  profileTitleInput.value = profileDefinition.textContent;
+profileNameInput.value = profileName.textContent;
+profileTitleInput.value = profileDefinition.textContent;
     openPopup(popupProfileEdit);
 };
 
@@ -100,7 +99,6 @@ profileEdit.addEventListener('click', openEditPopup);
 
 function  openAddPopup(){
   openPopup(popupElementAdd)
-  //currentPopup = popupElementAdd;
 }
 
 profileAddButton.addEventListener('click', openAddPopup);
@@ -169,9 +167,9 @@ const cardTitle = document.querySelector('.popup__input_element_name');
 const cardURL = document.querySelector('.popup__input_element_url');
 
 function saveCardInfo(){
-    name = cardTitle.value
-    link = cardURL.value
-    const item = {name,link}
+   const name = cardTitle.value
+   const link = cardURL.value
+   const item = {name,link}
     renderElement(item, cardsContainer);
 
     closePopup(popupElementAdd);
