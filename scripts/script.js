@@ -30,31 +30,7 @@ const itemOpenTitle = document.querySelector('.popup__item-subject');
 
 
 
-const initialCards = [{
-  name: 'Архыз',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-},
-{
-  name: 'Челябинская область',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-},
-{
-  name: 'Иваново',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-},
-{
-  name: 'Камчатка',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-},
-{
-  name: 'Холмогорский район',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-},
-{
-  name: 'Байкал',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-}
-];
+
 
 /// Открытие закрытие попапов
 function openPopup (popupElement) {
@@ -114,6 +90,7 @@ function createElement(item) {
   const elementLikeButton = elementCard.querySelector(".element__like-button");
   const elementDeleteButton = elementCard.querySelector(".element__trash-button");
 
+
   elementImage.src = item.link;
   elementTitle.textContent = item.name;
   elementImage.alt = item.name;
@@ -150,6 +127,7 @@ initialCards.forEach(function (item) {
 // Изменение данных имени пользователя формы, preventDefault сбрасывает значения формы но дефолтных
 function saveProfileInfo(e) {
   e.preventDefault();
+
   profileName.textContent = profileNameInput.value;
   profileDefinition.textContent = profileTitleInput.value;
   closePopup(popupProfileEdit);
