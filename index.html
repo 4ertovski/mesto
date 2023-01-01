@@ -39,8 +39,28 @@
          <div class="popup__container">
             <form class="popup__form popup__form_profile" method="post" name="profile">
                <h2 class="popup__title">Редактировать профиль</h2>
-               <input class="popup__input popup__input_profile_name" name="name-input" value="" type="text" placeholder="Имя">
-               <input class="popup__input popup__input_profile_title" name="title-input" value="" type="text" placeholder="Описание">
+               <label class="form__field">
+               <input class="popup__input popup__input_profile_name"
+               name="name-input"
+               value=""
+               type="text"
+               placeholder="Имя"
+               required
+               minlength="2"
+               maxlength="40">
+               <span class="popup__input-error" id="name-input-error"></span>
+            </label>
+            <label class="form__field">
+               <input class="popup__input popup__input_profile_title"
+               name="title-input"
+               value=""
+               type="text"
+               placeholder="Описание"
+               required
+               minlength="2"
+               maxlength="200">
+               <span class="popup__input-error" id="title-input-error"></span>
+            </label>   
                <!--     Добавила класс, чтобы отделить этот сейв от добавления карточки   -->
                <button class="popup__button popup__button_active_submit popup__button_active_save-profile" type="submit" aria-label="Сохранить" value="save">Сохранить</button>
                <button class="popup__button popup__button_active_exit popup__close" type="button" aria-label="Закрыть" value="close">Закрыть</button>
@@ -53,9 +73,28 @@
          <div class="popup__container">
             <form class="popup__form popup__form_element" method="post" name="card">
                <h2 class="popup__title">Новое место</h2>
-               <input class="popup__input popup__input_element_name" name="image-name" value="" type="text" placeholder="Название">
-               <input class="popup__input popup__input_element_url" name="url-input" value="" type="text" placeholder="Ссылка на картинку">
+               <label class="form__field">
+               <input 
+               class="popup__input popup__input_element_name" 
+               name="image-name" 
+               value="" 
+               type="text" 
+               placeholder="Название"
+               required
+               minlength="2"
+               maxlength="30">
+               <span class="popup__input-error" id="element-name-input-error"></span>
+               </label>
+               <label class="form__field">
+               <input class="popup__input popup__input_element_url"
+               name="url-input"
+               value=""
+               type="url"
+               placeholder="Ссылка на картинку"
+               required>
                <!--     Добавила класс, чтобы отделить этот сейв от редактирования профиля     -->
+               <span class="popup__input-error" id="url-input-error"></span>
+            </label>
                <button class="popup__button popup__button_active_submit popup__button_active_save-card" type="submit" aria-label="Создать" value="save">Создать</button>
                <button class="popup__button popup__button_active_exit popup__close" type="button" aria-label="Закрыть" value="close">Закрыть</button>
                <!--     Добавила общий класс для крестика   -->
@@ -83,6 +122,7 @@
          </article>
       </template>
       <script src="./scripts/card.js"></script>
+      <script src="./scripts/validate.js"></script>
       <script src="./scripts/script.js"></script>
    </body>
 </html>
