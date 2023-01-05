@@ -29,19 +29,18 @@ const itemOpenImage = document.querySelector('.popup__item');
 const itemOpenTitle = document.querySelector('.popup__item-subject');
 
 
-
-
-
 /// Открытие закрытие попапов
 function openPopup (popupElement) {
   popupElement.classList.add("popup_opened")
+  document.addEventListener('keydown', closeByEscape);
 }
 
 function closePopup (popupElement) {
   popupElement.classList.remove("popup_opened")
+  document.addEventListener('keydown', closeByEscape);
 }
 
-/// Открытие попапа просмотра картинок
+// Открытие попапа просмотра картинок
 
 const imageElemTitle = document.querySelector('.popup__item-subject');
 const imageElemImage = document.querySelector('.popup__item');
@@ -69,6 +68,7 @@ profileTitleInput.value = profileDefinition.textContent;
 };
 
 // Добавляем на кнопку событие, которое по клику вызывает функцию, показывающую попап
+
 profileEdit.addEventListener('click', openEditPopup);
 
 /// Кнопка добавления фотографии
@@ -80,7 +80,9 @@ function  openAddPopup(){
 profileAddButton.addEventListener('click', openAddPopup);
 
 
+
 /// Функция создает массив по элементам
+
 //начало 
 function createElement(item) {
   //создаем элемент с данными из переменной где хранится темплейт
@@ -104,11 +106,13 @@ function createElement(item) {
   } //конец
 
   /// Добавление и удаление лайка
+
 function addLike(e) {
   e.target.classList.toggle("element__like-button_active");
 }
 
 /// Удаление карточки
+
 function clickDelete(e) {
   e.target.closest(".element").remove();
 }
@@ -124,7 +128,8 @@ initialCards.forEach(function (item) {
   renderElement(item, cardsContainer);
 });
 
-// Изменение данных имени пользователя формы, preventDefault сбрасывает значения формы но дефолтных
+// Изменение данных имени пользователя формы, preventDefault сбрасывает значения формы до дефолтных
+
 function saveProfileInfo(e) {
   e.preventDefault();
 
@@ -134,7 +139,8 @@ function saveProfileInfo(e) {
 }
 popupProfileEdit.addEventListener("submit", saveProfileInfo);
 
-///Добавление новых картинок
+/// Добавление новых картинок
+
 const saveCardButton = document.querySelector('.popup__button_active_save_card');
 
 const formAddCard = document.querySelector(".popup__form_element");
@@ -159,18 +165,29 @@ formAddCard.addEventListener('submit', (e)=> {
   e.target.reset();
 });
 
+//Закрытие попапа нажатием на Esc
+
+function closeByEscape(e) {
+  const key = e.key;
+  if (key === "Escape" || key === "Esc") {
+      const openedPopup = document.querySelector('.popup_opened');
+      closePopup(openedPopup);
+  }
+};
+
 const popups = document.querySelectorAll('.popup')
 
 popups.forEach((popup) => {
-    popup.addEventListener('mousedown', (evt) => {
-        if (evt.target.classList.contains('popup_opened')) {
+    popup.addEventListener('mousedown', (e) => {
+        if (e.target.classList.contains('popup_opened')) {
             closePopup(popup)
         }
-        if (evt.target.classList.contains('popup__close')) {
+        if (e.target.classList.contains('popup__close')) {
           closePopup(popup)
         }
     })
 });
+
 
 
 /// заметки на полях:
