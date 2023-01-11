@@ -11,6 +11,7 @@ const profileEdit = document.querySelector(".profile__button_active_edit"); //к
 const profileAddButton = document.querySelector(".profile__button_active_add"); //кнопка, открывающая попап с возможностью добавления карточки
 
 //elements
+const formAddElement = document.querySelector(".popup__form_element");
 const cardsContainer = document.querySelector('.elements');  
 const templateCard = document.querySelector('#card-template').content.querySelector('.element'); 
 /*Элемент <template> предназначен для хранения «образца» разметки, невидимого и предназначенного для вставки куда-либо.
@@ -49,7 +50,6 @@ function openImage(item) {
   imageElemTitle.textContent = item.name;
   imageElemImage.src = item.link;
   imageElemTitle.alt = item.name;
-
     openPopup(popupItemOpen);
 }
 
@@ -60,26 +60,20 @@ const profileDefinition = document.querySelector(".profile__definition"); //ро
 const profileNameInput = formEditProfile.querySelector('.popup__input_profile_name');
 const profileTitleInput = formEditProfile.querySelector('.popup__input_profile_title');
 
+
 function openEditPopup(e){
 e.preventDefault();
 profileNameInput.value = profileName.textContent;
 profileTitleInput.value = profileDefinition.textContent;
+setHandlers(formEditProfile, validationConfig)
     openPopup(popupProfileEdit);
 };
-
-// Добавляем на кнопку событие, которое по клику вызывает функцию, показывающую попап
-
-profileEdit.addEventListener('click', openEditPopup);
 
 /// Кнопка добавления фотографии
 
 function  openAddPopup(){
   openPopup(popupElementAdd)
 }
-
-profileAddButton.addEventListener('click', openAddPopup);
-
-
 
 /// Функция создает массив по элементам
 
@@ -137,7 +131,6 @@ function saveProfileInfo(e) {
   profileDefinition.textContent = profileTitleInput.value;
   closePopup(popupProfileEdit);
 }
-popupProfileEdit.addEventListener("submit", saveProfileInfo);
 
 /// Добавление новых картинок
 
@@ -149,13 +142,13 @@ const formAddCard = document.querySelector(".popup__form_element");
 
 const cardTitle = document.querySelector('.popup__input_element_name');
 const cardURL = document.querySelector('.popup__input_element_url');
+const popupButton = document.querySelector('.popup__button');
 
 function saveCardInfo(){
    const name = cardTitle.value
    const link = cardURL.value
    const item = {name,link}
     renderElement(item, cardsContainer);
-
     closePopup(popupElementAdd);
 }
 
@@ -188,6 +181,10 @@ popups.forEach((popup) => {
     })
 });
 
+//formEditProfile.addEventListener('submit', saveProfileInfo);
+popupProfileEdit.addEventListener("submit", saveProfileInfo);
+profileEdit.addEventListener('click', openEditPopup);
+profileAddButton.addEventListener('click', openAddPopup);
 
 
 /// заметки на полях:
