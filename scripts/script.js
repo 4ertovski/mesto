@@ -181,8 +181,8 @@ popups.forEach((popup) => {
     })
 });
 
-//formEditProfile.addEventListener('submit', saveProfileInfo);
-popupProfileEdit.addEventListener("submit", saveProfileInfo);
+formEditProfile.addEventListener('submit', saveProfileInfo);
+//popupProfileEdit.addEventListener("submit", saveProfileInfo);
 profileEdit.addEventListener('click', openEditPopup);
 profileAddButton.addEventListener('click', openAddPopup);
 

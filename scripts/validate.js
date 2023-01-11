@@ -49,10 +49,10 @@ function validateInput(form, input, config) {
 /** Изменение статуса кнопки формы */
 function toggleBtnState(inputs, button, config) {
   if (hasInvalidInput(inputs)) {
-    addDisabledBtnState(button, config);
+    addDisabledBtn(button, config);
   }
   else {
-    removeDisabledBtnState(button, config);
+    removeDisabledBtn(button, config);
   }
 };
 
@@ -62,12 +62,12 @@ function hasInvalidInput(inputs) {
 };
 
 /** Активация-деактивация кнопки формы */
-function removeDisabledBtnState(button, config) {
+function removeDisabledBtn(button, config) {
   button.classList.remove(config.inactiveBtnClass);
   button.removeAttribute('disabled', false);
 };
 
-function addDisabledBtnState(button, config) {
+function addDisabledBtn(button, config) {
   button.classList.add(config.inactiveBtnClass);
   button.setAttribute('disabled', true);
 };
