@@ -8,7 +8,7 @@ const validationConfig = {
   errorClass: 'popup__input-error_active',
 }
 
-/** Получение формы */
+/* Получение формы */
 function enableValidation(config) {
   const forms = Array.from(document.querySelectorAll(config.formSelector));
   forms.forEach((form) => {
@@ -19,11 +19,11 @@ function enableValidation(config) {
   })
 };
 
-/** Обработчик формы */
+/* Обработчик формы */
 function setHandlers(form, config) {
   const inputs = Array.from(form.querySelectorAll(config.inputSelector));
   const button = form.querySelector(config.submitBtnSelector);
-  toggleBtnState(inputs, button, config);
+  //toggleBtnState(inputs, button, config);
   inputs.forEach((input) => {
     input.addEventListener('input', () => {
       validateInput(form, input, config);
@@ -32,21 +32,35 @@ function setHandlers(form, config) {
   })
 };
 
-/** Валидация инпутов */
+function addErrorClass(input, error, config) {
+  input.classList.add(config.inputErrorClass);
+  error.textContent = input.validationMessage;
+}
+
+function removeErrorClass(input, error, config) {
+  input.classList.remove(config.inputErrorClass);
+  error.classList.remove(config.errorClass);
+  error.textContent = '';
+
+}
+
+/* Валидация инпутов */
 function validateInput(form, input, config) {
   const error = form.querySelector(`#${input.id}-error`);
   if (!input.validity.valid) {
-    input.classList.add(config.inputErrorClass);
-    error.textContent = input.validationMessage;
+    addErrorClass(input, error, config);
+    //input.classList.add(config.inputErrorClass);
+    //error.textContent = input.validationMessage;
   }
   else {
-    input.classList.remove(config.inputErrorClass);
-    error.classList.remove(config.errorClass);
-    error.textContent = '';
+    removeErrorClass(input, error, config)
+    //input.classList.remove(config.inputErrorClass);
+   // error.classList.remove(config.errorClass);
+    //error.textContent = '';
   }
 };
 
-/** Изменение статуса кнопки формы */
+/* Изменение статуса кнопки формы */
 function toggleBtnState(inputs, button, config) {
   if (hasInvalidInput(inputs)) {
     addDisabledBtn(button, config);
@@ -56,12 +70,14 @@ function toggleBtnState(inputs, button, config) {
   }
 };
 
-/** Проверка формы на валидность*/
+
+
+/* Проверка формы на валидность*/
 function hasInvalidInput(inputs) {
   return (inputs.some((input) => !input.validity.valid));
 };
 
-/** Активация-деактивация кнопки формы */
+/* Активация-деактивация кнопки формы */
 function removeDisabledBtn(button, config) {
   button.classList.remove(config.inactiveBtnClass);
   button.removeAttribute('disabled', false);
@@ -70,6 +86,38 @@ function removeDisabledBtn(button, config) {
 function addDisabledBtn(button, config) {
   button.classList.add(config.inactiveBtnClass);
   button.setAttribute('disabled', true);
+};
+
+function validateBtnState(el) {
+  const button = el.querySelector(validationConfig.submitBtnSelector);
+  const inputsBtnState = Array.from(el.querySelectorAll(validationConfig.inputSelector));
+  let isValid = true; 
+
+  inputsBtnState.forEach((input) => {
+    if(!input.validity.valid) {
+      isValid = false;
+    }
+  })
+  if (isValid) {
+    removeDisabledBtn(button, validationConfig);
+  }
+  else {
+    addDisabledBtn(button, validationConfig);
+  }
+};
+
+function validateErrorState(el) {
+const inputsErrorState = Array.from(el.querySelectorAll(validationConfig.inputSelector));
+
+inputsErrorState.forEach((input) => {
+  const error = el.querySelector(`#${input.id}-error`);
+  if(!input.validity.valid) {
+    addErrorClass(input, error, validationConfig);
+  }
+  else {
+    removeErrorClass(input, error, validationConfig);
+  }
+})
 };
 
 enableValidation(validationConfig);

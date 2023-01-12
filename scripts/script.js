@@ -65,13 +65,16 @@ function openEditPopup(e){
 e.preventDefault();
 profileNameInput.value = profileName.textContent;
 profileTitleInput.value = profileDefinition.textContent;
-setHandlers(formEditProfile, validationConfig)
+validateErrorState(popupProfileEdit);
+validateBtnState(popupProfileEdit)
     openPopup(popupProfileEdit);
 };
 
 /// Кнопка добавления фотографии
 
 function  openAddPopup(){
+  validateErrorState(popupElementAdd);
+  validateBtnState(popupElementAdd); 
   openPopup(popupElementAdd)
 }
 
@@ -182,7 +185,6 @@ popups.forEach((popup) => {
 });
 
 formEditProfile.addEventListener('submit', saveProfileInfo);
-//popupProfileEdit.addEventListener("submit", saveProfileInfo);
 profileEdit.addEventListener('click', openEditPopup);
 profileAddButton.addEventListener('click', openAddPopup);
 
