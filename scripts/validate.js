@@ -70,8 +70,6 @@ function toggleBtnState(inputs, button, config) {
   }
 };
 
-
-
 /* Проверка формы на валидность*/
 function hasInvalidInput(inputs) {
   return (inputs.some((input) => !input.validity.valid));
@@ -112,9 +110,6 @@ const inputsErrorState = Array.from(el.querySelectorAll(validationConfig.inputSe
 inputsErrorState.forEach((input) => {
   const error = el.querySelector(`#${input.id}-error`);
   if(!input.validity.valid) {
-    addErrorClass(input, error, validationConfig);
-  }
-  else {
     removeErrorClass(input, error, validationConfig);
   }
 })
