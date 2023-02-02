@@ -27,8 +27,8 @@ import {
   cardTitle,
   cardURL,
   //popupButton,
-  popups,
-  saveCardButton,
+  //popups,
+  //saveCardButton,
 }
 from "./variable.js";
 
@@ -51,7 +51,7 @@ function openPopup (popup) {
 
 function closePopup (popup) {
   popup.classList.remove("popup_opened")
-  document.addEventListener('keydown', closeByEscape);
+  document.removeEventListener('keydown', closeByEscape);
   popup.addEventListener('mousedown', closeByClickOverlay);
 }
 
@@ -130,9 +130,6 @@ function saveProfileInfo(e) {
 
   closePopup(popupProfileEdit);
 }
-
-
-
 
 formEditProfile.addEventListener('submit', saveProfileInfo);
 profileEdit.addEventListener('click', openEditPopup);
