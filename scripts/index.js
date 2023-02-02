@@ -40,21 +40,38 @@ const validationForm = new FormValidator(config, formEditProfile);
 validationForm.enableValidation();
 
 /// Открытие закрытие попапов
-function openPopup (popupElement) {
-  popupElement.classList.add("popup_opened")
+function openPopup (popup) {
+  popup.classList.add("popup_opened")
   document.addEventListener('keydown', closeByEscape);
+  popup.addEventListener('mousedown', closeByClickOverlay);
   validationForm.resetValidation();
   validationFormCard.resetValidation();
   validationForm.disableSubmitBtn();
 }
 
-function closePopup (popupElement) {
-  popupElement.classList.remove("popup_opened")
+function closePopup (popup) {
+  popup.classList.remove("popup_opened")
   document.addEventListener('keydown', closeByEscape);
+  popup.addEventListener('mousedown', closeByClickOverlay);
+}
+
+//Закрытие попапа нажатием на Esc
+function closeByEscape(e) {
+  const key = e.key;
+  if (key === "Escape" || key === "Esc") {
+    const openedPopup = document.querySelector('.popup_opened');
+      closePopup(openedPopup);
+  }
+};
+
+//Закрытие попапа нажатием на оверлей 
+function closeByClickOverlay(e) {
+  if (e.target === e.currentTarget) {
+    closePopup(e.currentTarget)
+  }
 }
 
 // Открытие попапа просмотра картинок
-
 export default function openImage(name, link) {
   imageElemTitle.textContent = name;
   imageElemImage.src = link;
@@ -88,8 +105,8 @@ function handleFormSubmitCard(evt) {
   formAddElement.reset(); //сброс полей инпутов
 }
 
-// Функция для открытия попапа
 
+// Функция для открытия попапа
 function openEditPopup(e){
 e.preventDefault();
 profileNameInput.value = profileName.textContent;
@@ -111,37 +128,17 @@ function saveProfileInfo(e) {
   profileName.textContent = profileNameInput.value;
   profileDefinition.textContent = profileTitleInput.value;
 
-
   closePopup(popupProfileEdit);
 }
 
-//Закрытие попапа нажатием на Esc
 
-function closeByEscape(e) {
-  const key = e.key;
-  if (key === "Escape" || key === "Esc") {
-      const openedPopup = document.querySelector('.popup_opened');
-      closePopup(openedPopup);
-  }
-};
-
-popups.forEach((popup) => {
-    popup.addEventListener('mousedown', (e) => {
-        if (e.target.classList.contains('popup_opened')) {
-            closePopup(popup)
-        }
-        if (e.target.classList.contains('popup__close')) {
-          closePopup(popup)
-        }
-    })
-});
 
 
 formEditProfile.addEventListener('submit', saveProfileInfo);
 profileEdit.addEventListener('click', openEditPopup);
 profileAddButton.addEventListener('click', openAddPopup);
 popupElementAdd.addEventListener("submit", handleFormSubmitCard);
-saveCardButton.addEventListener("click", () => { openPopup(popupElementAdd), formAddElement.reset() });
+
 
 
   
