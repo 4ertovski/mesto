@@ -27,7 +27,7 @@ import {
   cardTitle,
   cardURL,
   //popupButton,
-  //popups,
+  popups,
   //saveCardButton,
 }
 from "./variable.js";
@@ -130,6 +130,17 @@ function saveProfileInfo(e) {
 
   closePopup(popupProfileEdit);
 }
+
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (e) => {
+      if (e.target.classList.contains('popup_opened')) {
+          closePopup(popup)
+      }
+      if (e.target.classList.contains('popup__close')) {
+        closePopup(popup)
+      }
+  })
+});
 
 formEditProfile.addEventListener('submit', saveProfileInfo);
 profileEdit.addEventListener('click', openEditPopup);
