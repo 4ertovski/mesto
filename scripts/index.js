@@ -23,7 +23,7 @@ import {
   profileDefinition,
   profileNameInput,
   profileTitleInput,
-  //formAddCard,
+  formAddCard,
   cardTitle,
   cardURL,
   //popupButton,
@@ -102,7 +102,7 @@ function handleFormSubmitCard(evt) {
 
   renderElement(elementCard, cardsContainer);
   closePopup(popupElementAdd);
-  formAddElement.reset(); //сброс полей инпутов
+  //formAddCard.reset(); //сброс полей инпутов
 }
 
 
@@ -118,6 +118,7 @@ profileTitleInput.value = profileDefinition.textContent;
 
 function  openAddPopup(){
   openPopup(popupElementAdd)
+  formAddCard.reset();
 }
 
 // Изменение данных имени пользователя формы, preventDefault сбрасывает значения формы до дефолтных

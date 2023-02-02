@@ -55,7 +55,7 @@ export const templateCard = document.querySelector('#card-template').content.que
 
 //popup
 export const popupProfileEdit = document.querySelector('.popup_profile'); //попап с возможностью исправить информацию о пользователе
-export const popupElementAdd = document.querySelector('.popup_element'); //попап позволяющий добавить фото
+export const popupElementAdd = document.querySelector('.popup_element'); //попап позволяющий добавить фото !
 export const popupItemOpen = document.querySelector(".popup_img"); //попап открывающий фото
 
 export const profileTitle = popupProfileEdit.querySelector('.popup__title');
@@ -74,7 +74,7 @@ export const profileTitleInput = formEditProfile.querySelector('.popup__input_pr
 
 
 export const saveCardButton = document.querySelector('.popup__button_active_save_card');
-export const formAddCard = document.querySelector(".popup__form_element");
+export const formAddCard = popupElementAdd.querySelector(".popup__form_element");
 
 export const cardTitle = document.querySelector('.popup__input_element_name');
 export const cardURL = document.querySelector('.popup__input_element_url');
