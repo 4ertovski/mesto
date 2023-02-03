@@ -1,24 +1,22 @@
-
 export default class FormValidator {
+  constructor(config, formElement) {
+    this._formSelector = config.formSelector;
+    this._inputSelector = config.inputSelector;
+    this._errorSelector = config.errorSelector;
+    this._submitBtnSelector = config.submitBtnSelector;
+    this._inactiveBtnClass = config.inactiveBtnClass;
+    this._inputErrorClass = config.inputErrorClass;
+    this._errorClass = config.errorClass;
+    this._formElement = formElement;
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._btnElement = this._formElement.querySelector(this._submitBtnSelector);
+  }
 
-constructor (config, formElement) {
-  this._formSelector = config.formSelector;
-  this._inputSelector = config.inputSelector;
-  this._errorSelector = config.errorSelector;
-  this._submitBtnSelector = config.submitBtnSelector;
-  this._inactiveBtnClass = config.inactiveBtnClass;
-  this._inputErrorClass = config.inputErrorClass;
-  this._errorClass = config. errorClass;
-  this._formElement = formElement;
-  this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-  this._btnElement = this._formElement.querySelector(this._submitBtnSelector);
-}
-
-_hasInvalidInput = () => {
-  return this._inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-}
+  _hasInvalidInput = () => {
+    return this._inputList.some((inputElement) => {
+      return !inputElement.validity.valid;
+    });
+  };
 
   // приватный метод показывает сообщение об ошибке
   _showInputError = (inputElement, errorMessage) => {
@@ -40,18 +38,18 @@ _hasInvalidInput = () => {
     errorElement.textContent = "";
   };
 
-    //приватный метод, который переключает активность кнопок
-    _toggleBtnState = () => {
-      if (this._hasInvalidInput()) {
-        this._btnElement.classList.add(this._inactiveBtnClass);
-        this._btnElement.disabled = true;
-      } else {
-        this._btnElement.classList.remove(this._inactiveBtnClass);
-        this._btnElement.disabled = false;
-      }
-    };
+  //приватный метод, который переключает активность кнопок
+  _toggleBtnState = () => {
+    if (this._hasInvalidInput()) {
+      this._btnElement.classList.add(this._inactiveBtnClass);
+      this._btnElement.disabled = true;
+    } else {
+      this._btnElement.classList.remove(this._inactiveBtnClass);
+      this._btnElement.disabled = false;
+    }
+  };
 
-     //приватный метод проверки валидности поля
+  //приватный метод проверки валидности поля
   _checkInputValidity = (inputElement) => {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage); //Передаем сообщение об ошибке
@@ -62,7 +60,7 @@ _hasInvalidInput = () => {
 
   //приватный слушатель, который добавляет сообщения об ошибках
   _setEventListeners = () => {
-    this._toggleBtnState(); 
+    this._toggleBtnState();
 
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
@@ -71,7 +69,7 @@ _hasInvalidInput = () => {
         this._formElement.addEventListener("reset", () => {
           setTimeout(() => {
             this._toggleBtnState();
-          }, 0); 
+          }, 0);
         });
       });
     });
@@ -95,5 +93,4 @@ _hasInvalidInput = () => {
   enableValidation = () => {
     this._setEventListeners();
   };
-    
 }
