@@ -23,7 +23,7 @@ import {
   profileDefinition,
   profileNameInput,
   profileTitleInput,
-  formAddCard,
+  //formAddCard,
   cardTitle,
   cardURL,
   //popupButton,
@@ -42,7 +42,7 @@ validationForm.enableValidation();
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
-  popup.addEventListener("mousedown", closeByClickOverlay);
+  //popup.addEventListener("mousedown", closeByClickOverlay);
   //validationForm.resetValidation();
   //validationFormCard.resetValidation();
   //validationForm.disableSubmitBtn();
@@ -51,7 +51,7 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeByEscape);
-  popup.addEventListener("mousedown", closeByClickOverlay);
+  //popup.removeEventListener("mousedown", closeByClickOverlay);
 }
 
 //Закрытие попапа нажатием на Esc
@@ -64,12 +64,13 @@ function closeByEscape(e) {
 }
 
 //Закрытие попапа нажатием на оверлей
+/*
 function closeByClickOverlay(e) {
   if (e.target === e.currentTarget) {
     closePopup(e.currentTarget);
   }
 }
-
+*/
 // Открытие попапа просмотра картинок
 export default function openImage(name, link) {
   imageElemTitle.textContent = name;
@@ -101,7 +102,7 @@ function handleFormSubmitCard(evt) {
 
   renderElement(elementCard, cardsContainer);
   closePopup(popupElementAdd);
-  formAddCard.reset(); //сброс полей инпутов
+  formAddElement.reset(); //сброс полей инпутов
 }
 
 // Функция для открытия попапа
@@ -111,7 +112,7 @@ function openEditPopup(e) {
   profileTitleInput.value = profileDefinition.textContent;
 
   validationForm.resetValidation();
-  validationForm.disableSubmitBtn();
+  validationForm.activateButton();
 
   openPopup(popupProfileEdit);
 }

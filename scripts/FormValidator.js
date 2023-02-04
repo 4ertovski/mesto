@@ -64,16 +64,24 @@ export default class FormValidator {
   _setEventListeners = () => {
     this._toggleBtnState();
 
+    this._formElement.addEventListener("reset", () => {
+      setTimeout(() => {
+        this._toggleBtnState();
+      }, 0);
+    });
+
+    // потом уже `forEach`
+
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
         this._toggleBtnState();
-        this._formElement.addEventListener("reset", () => {
-          setTimeout(() => {
-            this._toggleBtnState();
-          }, 0);
-        });
-      });
+        //this._formElement.addEventListener("reset", () => {
+        //setTimeout(() => {
+        //this._toggleBtnState();
+        //}, 0);
+      //});
+    });
     });
   };
 
@@ -86,7 +94,7 @@ export default class FormValidator {
 
   //публичный метод, который при открытии удаляет инактив класс
   //и дает возможность отправки формы
-  disableSubmitBtn() {
+  activateButton() {
     this._btnElement.classList.remove(this._inactiveBtnClass);
     this._btnElement.disabled = false;
   }
