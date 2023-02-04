@@ -50,6 +50,16 @@ export default class FormValidator {
       this._btnElement.disabled = false;
     }
   };
+  /*
+  деактивация кнопки вынесена в disableSubmitBtn, поэтому тут его нужно вызывать, чтобы не дублировать код
+
+      if (this._hasInvalidInput()) {
+        this.disableSubmitBtn()
+      } else {
+ 
+но потом увидел, что активируется кнопка там. 
+Вам нужно определиться, что этот метод делать, и использовать его везде правильно
+  */
 
   //приватный метод проверки валидности поля
   _checkInputValidity = (inputElement) => {
@@ -80,11 +90,25 @@ export default class FormValidator {
         //setTimeout(() => {
         //this._toggleBtnState();
         //}, 0);
-      //});
-    });
+        //});
+      });
     });
   };
+  /*
+обработчик reset нужно на 66й строчке 1 раз навесить на форму, а не внутри цикла forEach, 
+иначе под каждый инпут это навесится
 
+    this._formElement.addEventListener("reset", () => {
+      setTimeout(() => {
+        this._toggleBtnState();
+      }, 0); 
+    });
+
+// потом уже `forEach`
+
+    this._inputList.forEach((inputElement) => {
+ 
+*/
   //публичный метод, который будет сбрасывать ошибки с текущей формы
   resetValidation() {
     this._inputList.forEach((inputElement) => {
@@ -98,6 +122,10 @@ export default class FormValidator {
     this._btnElement.classList.remove(this._inactiveBtnClass);
     this._btnElement.disabled = false;
   }
+  /*
+  disableSubmitBtn называете, а внутри активируете кнопку
+тогда это должно быть activateButton
+  */
 
   //публичный метод который включает валидацию
   enableValidation = () => {

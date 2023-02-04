@@ -38,21 +38,68 @@ validationFormCard.enableValidation();
 const validationForm = new FormValidator(config, formEditProfile);
 validationForm.enableValidation();
 
+/*
+Если будет интересно, можно универсально создать экземпляры валидаторов всех форм, поместив их все в один объект, 
+а потом брать из него валидатор по атрибуту name, который задан для формы. Это очень универсально и для любого кол-ва форм подходит.
+const formValidators = {}
+
+// Включение валидации
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formElement, config)
+// получаем данные из атрибута `name` у формы
+    const formName = formElement.getAttribute('name')
+
+   // вот тут в объект записываем под именем формы
+    formValidators[formName] = validator;
+   validator.enableValidation();
+  });
+};
+
+enableValidation(config);
+ 
+И теперь можно использовать валидаторы для деактивации кнопки и тд
+
+formValidators[ profileForm.getAttribute('name') ].resetValidation()
+
+// или можно использовать строку (ведь Вы знаете, какой атрибут `name` у каждой формы)
+formValidators['profile-form'].resetValidation()
+*/
+
 /// Открытие закрытие попапов
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
   //popup.addEventListener("mousedown", closeByClickOverlay);
+  //closeByClickOverlay Вам не нужна, так как овелей обрабатывается универсально с крестиками уже на 137й строчке
   //validationForm.resetValidation();
   //validationFormCard.resetValidation();
   //validationForm.disableSubmitBtn();
 }
+
+/*
+validationForm.resetValidation();
+  validationFormCard.resetValidation();
+  validationForm.disableSubmitBtn(); 
+вот это нужно удалить из openPopup
+В универсальных функциях (методах) не должно быть кода, который относится только к конкретным попапам. Весь код функций должен подходить любым элементам, которые его используют.
+Вам не нужно это делать, когда открываете попап картинки. Не нужно управлять кнопкой попапа добавления карточки, если открываете попап профиля и тд. Это лишние действия. Сейчас они очень незначительные, но в реальных проектах очень много логики в каждом вызове функции/метода
+очищать ошибки нужно при клике на кнопку открытия профиля
+а деактивировать кнопку при сабмите формы добавления карточки. (там очищать ошибки не нужно)
+*/
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeByEscape);
   //popup.removeEventListener("mousedown", closeByClickOverlay);
 }
+/*
+addEventListener
+при закрытии нужно удалять обработчик, а не опять  навешивать
+  popup.removeEventListener('mousedown', closeByClickOverlay);
+closeByClickOverlay Вам не нужна, так как овелей обрабатывается универсально с крестиками уже на 137й строчке
+*/
 
 //Закрытие попапа нажатием на Esc
 function closeByEscape(e) {
@@ -71,6 +118,8 @@ function closeByClickOverlay(e) {
   }
 }
 */
+//closeByClickOverlay Вам не нужна, так как овелей обрабатывается универсально с крестиками уже на 137й строчке
+
 // Открытие попапа просмотра картинок
 export default function openImage(name, link) {
   imageElemTitle.textContent = name;
@@ -124,6 +173,10 @@ function openAddPopup() {
   validationFormCard.resetValidation();
   //formAddCard.reset();
 }
+/*
+Очищать форму нужно только после сабмита карточки. Просто при закрытиях (открытиях) не нужно этого делать, 
+чтобы пользователю не нужно было печатать опять текст в инпутах, если он закрыл форму нечаянно
+ */
 
 // Изменение данных имени пользователя формы, preventDefault сбрасывает значения формы до дефолтных
 
