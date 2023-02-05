@@ -143,7 +143,7 @@ function openEditPopup(e) {
   profileTitleInput.value = profileDefinition.textContent;
 
   validationForm.resetValidation();
-  validationForm.activateButton();
+  //validationForm.activateButton();
 
   openPopup(popupProfileEdit);
 }

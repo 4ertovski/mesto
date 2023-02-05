@@ -40,7 +40,7 @@ export default class FormValidator {
     errorElement.textContent = "";
   };
 
-  activateButton() {
+  _activateButton() {
     this._btnElement.classList.add(this._inactiveBtnClass);
     this._btnElement.disabled = true;
   }
@@ -52,7 +52,7 @@ export default class FormValidator {
   //приватный метод, который переключает активность кнопок
   _toggleBtnState = () => {
     if (this._hasInvalidInput()) {
-      this.activateButton();
+      this._activateButton();
       //this._btnElement.classList.add(this._inactiveBtnClass);
       //this._btnElement.disabled = true;
     } else {
