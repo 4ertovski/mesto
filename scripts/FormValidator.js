@@ -40,28 +40,27 @@ export default class FormValidator {
     errorElement.textContent = "";
   };
 
+  activateButton() {
+    this._btnElement.classList.add(this._inactiveBtnClass);
+    this._btnElement.disabled = true;
+  }
+  _deactivateButton() {
+    this._btnElement.classList.remove(this._inactiveBtnClass);
+    this._btnElement.disabled = false;
+  }
+
   //приватный метод, который переключает активность кнопок
   _toggleBtnState = () => {
     if (this._hasInvalidInput()) {
-      this._deactivateButton();
+      this.activateButton();
       //this._btnElement.classList.add(this._inactiveBtnClass);
       //this._btnElement.disabled = true;
     } else {
-      this._activateButton();
+      this._deactivateButton();
       //this._btnElement.classList.remove(this._inactiveBtnClass);
       //this._btnElement.disabled = false;
     }
   };
-  /*
-  деактивация кнопки вынесена в disableSubmitBtn, поэтому тут его нужно вызывать, чтобы не дублировать код
-
-      if (this._hasInvalidInput()) {
-        this.disableSubmitBtn()
-      } else {
- 
-но потом увидел, что активируется кнопка там. 
-Вам нужно определиться, что этот метод делать, и использовать его везде правильно
-  */
 
   //приватный метод проверки валидности поля
   _checkInputValidity = (inputElement) => {
@@ -96,43 +95,13 @@ export default class FormValidator {
       });
     });
   };
-  /*
-обработчик reset нужно на 66й строчке 1 раз навесить на форму, а не внутри цикла forEach, 
-иначе под каждый инпут это навесится
 
-    this._formElement.addEventListener("reset", () => {
-      setTimeout(() => {
-        this._toggleBtnState();
-      }, 0); 
-    });
-
-// потом уже `forEach`
-
-    this._inputList.forEach((inputElement) => {
- 
-*/
   //публичный метод, который будет сбрасывать ошибки с текущей формы
   resetValidation() {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
   }
-
-  //публичный метод, который при открытии удаляет инактив класс
-  //и дает возможность отправки формы
-  _deactivateButton() {
-    this._btnElement.classList.add(this._inactiveBtnClass);
-    this._btnElement.disabled = true;
-  }
-  _activateButton() {
-    this._btnElement.classList.remove(this._inactiveBtnClass);
-    this._btnElement.disabled = false;
-  }
-  
-  /*
-  disableSubmitBtn называете, а внутри активируете кнопку
-тогда это должно быть activateButton
-  */
 
   //публичный метод который включает валидацию
   enableValidation = () => {
