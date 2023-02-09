@@ -1,11 +1,10 @@
-import openImage from "./index.js";
-
 export default class Card {
-  constructor(data, templateSelector, openImage) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
+    //this._alt = data.alt;
     this._templateSelector = templateSelector;
-    this._openImage = openImage;
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
     const templateElement = document
@@ -35,9 +34,7 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._elementImage.addEventListener("click", () => {
-      this._openImage(this._name, this._link);
-    });
+    this._elementImage.addEventListener("click", this._handleCardClick);
     this._elementDeleteButton.addEventListener("click", (evt) => {
       evt.target.closest(".element").remove();
     });
