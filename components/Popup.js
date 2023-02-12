@@ -1,4 +1,3 @@
-
 export default class Popup {
   // принимает в конструктор единственный параметр -- селектор попапа
   constructor(popupSelector) {
@@ -6,7 +5,7 @@ export default class Popup {
     //this._popupElement = document.querySelector(this._popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
   }
-// публичные методы, отвечающие за открытие и закрытие попапа 
+  // публичные методы, отвечающие за открытие и закрытие попапа
   open() {
     this._popupSelector.classList.add("popup_opened");
     document.addEventListener("keydown", this._handleEscClose);
@@ -23,8 +22,11 @@ export default class Popup {
   }
   // публичный метод, который добавляет слушатель клика иконке закрытия попапа + закрытие при клике на оверлей
   setEventListeners() {
-    this._popupSelector.addEventListener('mousedown', (e) => {
-      if (e.target.classList.contains('popup_opened') || e.target.classList.contains('popup__close')) {
+    this._popupSelector.addEventListener("mousedown", (e) => {
+      if (
+        e.target.classList.contains("popup_opened") ||
+        e.target.classList.contains("popup__close")
+      ) {
         this.close();
       }
     });

@@ -9,28 +9,29 @@ export default class PopupWithForm extends Popup {
   }
   // приватный метод, который собирает данные со всех полей формы
   _getInputValues() {
-    this._formValues = {};
+    const formValues = {};
     this._inputList.forEach((input) => {
-      this._formValues[input.name] = input.value;
+      formValues[input.name] = input.value;
     });
-    return this._formValues;
+    return formValues;
   }
-  // перезаписывает родительский метод, чтобы сбрасывать форму при закрытии попапа
-  close() {
-   // super.close();
-    this._popupForm.reset();
-    super.close();
-  }
+
   // перезаписывает родительский метод, не только добавляя обработчик по клику на иконку закрытия,
   // но и обработчик сабмита формы
   setEventListeners() {
-    //super.setEventListeners();
-
+    super.setEventListeners();
     this._popupForm.addEventListener("submit", (e) => {
       e.preventDefault();
       this._handleFormSubmit(this._getInputValues());
       this.close();
     });
-    super.setEventListeners();
+    //super.setEventListeners();
+  }
+
+  // перезаписывает родительский метод, чтобы сбрасывать форму при закрытии попапа
+  close() {
+    super.close();
+    this._popupForm.reset();
+    //super.close();
   }
 }

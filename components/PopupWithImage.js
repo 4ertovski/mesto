@@ -1,4 +1,4 @@
-import  Popup  from "./Popup.js";
+import Popup from "./Popup.js";
 
 export default class PopupWithImage extends Popup {
   constructor(popupSelector) {
@@ -7,7 +7,7 @@ export default class PopupWithImage extends Popup {
     this._name = this._popupSelector.querySelector(".popup__item-subject");
   }
   //перезаписывает родительский метод open и получает картинку с подписью
-  
+
   open(data) {
     super.open();
     this._image.src = data.src;

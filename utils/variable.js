@@ -95,3 +95,7 @@ export const cardURL = document.querySelector(".popup__input_element_url");
 export const popupButton = document.querySelector(".popup__button");
 
 export const popups = document.querySelectorAll(".popup");
+
+export const popupCloseButtonProfileEdit = document.querySelector(".popup__close");
+
+export const popupCloseButtonAddCard = document.querySelector(".popup__button_active_exit")

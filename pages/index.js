@@ -24,19 +24,21 @@ import {
   //elementTitle,
   //itemOpenImage,
   //itemOpenTitle,
-  imageElemImage,
-  imageElemTitle,
+  //imageElemImage,
+  //imageElemTitle,
   profileName,
   profileDefinition,
   profileNameInput,
   profileTitleInput,
   //formAddCard,
-  cardTitle,
-  cardURL,
+  //cardTitle,
+  //cardURL,
   //popupButton,
-  popups,
-  templateCard,
+  //popups,
+  //templateCard,
   //saveCardButton,
+  //popupCloseButtonAddCard,
+  //popupCloseButtonProfileEdit,
 } from "../utils/variable.js";
 
 //ВАЛИДАЦИЯ ФОРМ на основе класса
@@ -102,59 +104,6 @@ profileAddButton.addEventListener("click", () => {
   validationFormCard.resetValidation();
 });
 
-/*
-const createCard = (data) => {
-  const card = new Card(data, "#card-template", {
-    handleCardClick: () => {
-      imageOpen.open(data.name, data.link);
-    },
-  });
-  return card;
-};
-
-const cards = new Section(
-  {
-    items: initialCards,
-    renderer: (data) => {
-      const card = createCard(data);
-      const cardItem = card.generateCard();
-      cards.addItem(cardItem);
-    },
-  },
-  cardsContainer
-);
-
-cards.renderItems();
-
-const popupWithAddForm = new PopupWithForm(popupElementAdd, {
-  submit: (data) => {
-    userInfo.setUserInfo(data);
-  },
-});
-popupWithAddForm.setEventListeners();
-
-const popupWithProfileEditForm = new PopupWithForm(popupProfileEdit, {
-  submit: (data) => {
-    userInfo.setUserInfo(data);
-  },
-});
-
-popupWithProfileEditForm.setEventListeners();
-
-profileAddButton.addEventListener("click", () => {
-  popupWithAddForm.open();
-  validationFormCard.resetValidation();
-});
-
-profileEdit.addEventListener("click", () => {
-  popupWithProfileEditForm.open();
-  //userInfo.getUserInfo();
-  const { name, definition } = userInfo.getUserInfo();
-  profileNameInput.value = name;
-  profileTitleInput.value = definition;
-  validationForm.resetValidation();
-});
-*/
 /// заметки на полях:
 
 /*Метод Element.closest() возвращает ближайший родительский элемент (или сам элемент),
@@ -194,6 +143,7 @@ profileEdit.addEventListener("click", () => {
 /* Колбэк-функция (или обратный вызов) -- это функция, переданная в другую функцию в качестве аргумента,
  которая затем вызывается по завершению какого-либо действия.*/
 
+
 /*
 Если будет интересно, можно универсально создать экземпляры валидаторов всех форм, поместив их все в один объект, 
 а потом брать из него валидатор по атрибуту name, который задан для формы. Это очень универсально и для любого кол-ва форм подходит.
@@ -222,6 +172,7 @@ formValidators[ profileForm.getAttribute('name') ].resetValidation()
 // или можно использовать строку (ведь Вы знаете, какой атрибут `name` у каждой формы)
 formValidators['profile-form'].resetValidation()
 */
+
 /*
 /// Открытие закрытие попапов
 function openPopup(popup) {
@@ -338,4 +289,20 @@ formEditProfile.addEventListener("submit", saveProfileInfo);
 profileEdit.addEventListener("click", openEditPopup);
 profileAddButton.addEventListener("click", openAddPopup);
 popupElementAdd.addEventListener("submit", handleFormSubmitCard);
+*/
+
+/*
+popupWithProfileEditForm.setEventListeners();
+
+profileAddButton.addEventListener("click", () => {
+  popupWithAddForm.open();
+});
+
+popupCloseButtonProfileEdit.addEventListener("click", () => {
+  popupWithProfileEditForm.close();
+});
+
+popupCloseButtonAddCard.addEventListener("click", () => {
+  popupWithAddForm.close();
+});
 */
