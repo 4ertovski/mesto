@@ -6,17 +6,17 @@
       <meta name="author" content="Леся Савченко">
       <title>Место</title>
       <!--подключение стилей-->
-      <link rel="stylesheet" href="./pages/index.css">
-   </head>
-   <body class="page">
-      <!--Header-->
+      <!--<link rel="stylesheet" href="./pages/index.css">-->
+  </head>
+  <body class="page">
+     <!--Header-->
       <header class="header">
-         <img class="header__logo" src="./images/Mesto_header_logo.svg" alt="логотип Место.">
+         <img class="header__logo" src="<%=require('./images/Mesto_header_logo.svg')%>" alt="логотип Место.">
       </header>
       <main class="main">
          <!--Profile-->
          <section class="profile">
-            <img class="profile__avatar" src="./images/kusto.jpg" alt="Фото профиля.">
+            <img class="profile__avatar" src="<%=require('./images/kusto.jpg')%>" alt="Фото профиля.">
             <div class="profile__info">
                <div class="profile__wrapper">
                   <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -127,7 +127,7 @@
          </article>
       </template>
 
-      <script type="module" src="pages/index.js"></script>
+     <!--<script type="module" src="pages/index.js"></script>-->
      
    </body>
 </html>
