@@ -1,8 +1,8 @@
 export default class Section {
-  constructor({ items, renderer }, containerSelector) {
+  constructor({ items, renderer }, elementsContainer) {
     this._items = items;
     this._renderer = renderer;
-    this._container = containerSelector;
+    this._container = elementsContainer;
   }
   // публичный метод, который принимает DOM-элемент и добавляет его в контейнер
   addItem(element) {

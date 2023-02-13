@@ -53,12 +53,8 @@ export default class FormValidator {
   _toggleBtnState = () => {
     if (this._hasInvalidInput()) {
       this._activateButton();
-      //this._btnElement.classList.add(this._inactiveBtnClass);
-      //this._btnElement.disabled = true;
     } else {
       this._deactivateButton();
-      //this._btnElement.classList.remove(this._inactiveBtnClass);
-      //this._btnElement.disabled = false;
     }
   };
 
