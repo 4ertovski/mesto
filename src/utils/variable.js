@@ -1,3 +1,5 @@
+import Api from "../components/Api";
+
 export const initialCards = [
   {
     name: "Архыз",
@@ -36,6 +38,18 @@ export const config = {
 };
 
 // Переменные:
+
+
+export const userAvatar = document.querySelector(".profile__avatar-image");
+export const avatarContainer = document.querySelector(".profile__avatar");
+export const popupAddAvatar = document.querySelector(".popup_avatar-change");
+export const popupAddAvatarForm = popupAddAvatar.querySelector(".popup__form_avatar");
+
+export const popupDeleteCard = document.querySelector(".popup_delete");
+export const popupDeleteCardForm = popupDeleteCard.querySelector(".popup__form_delete-card");
+
+
+
 
 //profile
 export const formEditProfile = document.querySelector(".popup__form_profile");

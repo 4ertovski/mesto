@@ -1,133 +1,284 @@
 <!DOCTYPE html>
 <html lang="ru">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="author" content="Леся Савченко">
-      <title>Место</title>
-      <!--подключение стилей-->
-      <!--<link rel="stylesheet" href="./pages/index.css">-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Леся Савченко" />
+    <title>Место</title>
+    <!--подключение стилей-->
+    <!--<link rel="stylesheet" href="./pages/index.css">-->
   </head>
   <body class="page">
-     <!--Header-->
-      <header class="header">
-         <img class="header__logo" src="<%=require('./images/Mesto_header_logo.svg')%>" alt="логотип Место.">
-      </header>
-      <main class="main">
-         <!--Profile-->
-         <section class="profile">
-            <img class="profile__avatar" src="<%=require('./images/kusto.jpg')%>" alt="Фото профиля.">
-            <div class="profile__info">
-               <div class="profile__wrapper">
-                  <h1 class="profile__name">Жак-Ив Кусто</h1>
-                  <button class="profile__button profile__button_active_edit" aria-label="Редактировать" type="button"></button>
-               </div>
-               <p class="profile__definition">Исследователь океана</p>
-            </div>
-            <button class="profile__button profile__button_active_add" aria-label="Добавить" type="button"></button>
-         </section>
-         <!--Elements-->
-         <section class="elements" aria-label="Публикации">
-         </section>
-      </main>
-      <!--Footer-->
-      <footer class="footer">
-         <p class="footer__copyright">&copy;2022 Mesto Russia</p>
-      </footer>
-      <!--Popup исправление имени и рода деятельности-->
-      <div class="popup popup_profile">
-         <div class="popup__container">
-            <form class="popup__form popup__form_profile" method="post" name="profile" novalidate>
-               <h2 class="popup__title">Редактировать профиль</h2>
-               <label class="popup__form-field">
-               <input class="popup__input popup__input_profile_name"
-               name="name"
-               id = "name-input"
-               value=""
-               type="text"
-               placeholder="Имя"
-               minlength="2"
-               maxlength="40"
-               required>
-               <span class="popup__input-error" id="name-input-error"></span> 
-               <!-- NOTE: можно сделать спан не ID, а просто доп.классом -- подумать над этим -->
-            </label>
-            <label class="popup__form-field">
-               <input class="popup__input popup__input_profile_title"
-               name="definition"
-               id="title-input"
-               value=""
-               type="text"
-               placeholder="Описание"
-               minlength="2"
-               maxlength="200"
-               required>
-               <span class="popup__input-error" id="title-input-error"></span>
-            </label>   
-               <!--     Добавила класс, чтобы отделить этот сейв от добавления карточки   -->
-               <button class="popup__button popup__button_disabled popup__button_active_submit popup__button_active_save-profile" type="submit" aria-label="Сохранить" value="save">Сохранить</button>
-               <button class="popup__button popup__button_active_exit popup__close" type="button" aria-label="Закрыть" value="close">Закрыть</button>
-               <!--     Добавила общий класс для крестика   -->
-            </form>
-         </div>
+    <!--Header-->
+    <header class="header">
+      <img
+        class="header__logo"
+        src="<%=require('./images/Mesto_header_logo.svg')%>"
+        alt="логотип Место."
+      />
+    </header>
+    <main class="main">
+      <!--Profile-->
+      <section class="profile">
+        <div class="profile__avatar"> <!--добавить в верстку-->
+          <img
+            class="profile__avatar-image"
+            alt="Фото профиля."
+            src="#"
+          > <!--добавить в верстку-->
+          <!--src="<%=require('./images/kusto.jpg')%>"-->
+          <!--Note: поместить аватарку в бэкграунд-->
+        </div>
+        <!--  <button
+            class="profile__button profile__button_edit-avatar"
+            type="button"
+            aria-label="Редактировать фото профиля"
+          ></button>-->
+        <div class="profile__info">
+          <div class="profile__wrapper">
+            <h1 class="profile__name"></h1>
+            <button
+              class="profile__button profile__button_active_edit"
+              aria-label="Редактировать"
+              type="button"
+            ></button>
+          </div>
+          <p class="profile__definition"></p>
+        </div>
+        <button
+          class="profile__button profile__button_active_add"
+          aria-label="Добавить"
+          type="button"
+        ></button>
+      </section>
+      <!--Elements-->
+      <section class="elements" aria-label="Публикации"></section>
+    </main>
+    <!--Footer-->
+    <footer class="footer">
+      <p class="footer__copyright">&copy;2022 Mesto Russia</p>
+    </footer>
+    <!--Popup исправление имени и рода деятельности-->
+    <div class="popup popup_profile">
+      <div class="popup__container">
+        <form
+          class="popup__form popup__form_profile"
+          name="profile"
+          novalidate
+        >
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <label class="popup__form-field">
+            <input
+              class="popup__input popup__input_profile_name"
+              name="name"
+              id="name-input"
+              value=""
+              type="text"
+              placeholder="Имя"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="popup__input-error" id="name-input-error"></span>
+            <!-- NOTE: можно сделать спан не ID, а просто доп.классом -- подумать над этим -->
+          </label>
+          <label class="popup__form-field">
+            <input
+              class="popup__input popup__input_profile_title"
+              name="about"
+              id="title-input"
+              value=""
+              type="text"
+              placeholder="Описание"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="popup__input-error" id="title-input-error"></span>
+          </label>
+          <!--     Добавила класс, чтобы отделить этот сейв от добавления карточки   -->
+          <button
+            class="popup__button popup__button_disabled popup__button_active_submit popup__button_active_save-profile"
+            type="submit"
+            aria-label="Сохранить"
+            value="save"
+          >
+            Сохранить
+          </button>
+          <button
+            class="popup__button popup__button_active_exit popup__close"
+            type="button"
+            aria-label="Закрыть"
+            value="close"
+          >
+            Закрыть
+          </button>
+          <!--     Добавила общий класс для крестика   -->
+        </form>
       </div>
-      <!--Popup добавление карточки пользователем-->
-      <div class="popup popup_element">
-         <div class="popup__container">
-            <form class="popup__form popup__form_element" method="post" name="card" novalidate>
-               <h2 class="popup__title">Новое место</h2>
-               <label class="popup__form-field">
-               <input 
-               class="popup__input popup__input_element_name" 
-               name="name" 
-               id="element-name-input"
-               value="" 
-               type="text" 
-               placeholder="Название"
-               minlength="2"
-               maxlength="30"
-               required>
-               <span class="popup__input-error" id="element-name-input-error"></span>
-               </label>
-               <label class="popup__form-field">
-               <input class="popup__input popup__input_element_url"
-               name="link"
-               id="url-input"
-               value=""
-               type="url"
-               placeholder="Ссылка на картинку"
-               required>
-               <!--     Добавила класс, чтобы отделить этот сейв от редактирования профиля     -->
-               <span class="popup__input-error" id="url-input-error"></span>
-            </label>
-               <button class="popup__button popup__button_disabled popup__button_active_submit popup__button_active_save-card" type="submit" aria-label="Создать" value="save">Создать</button>
-               <button class="popup__button popup__button_active_exit popup__close" type="button" aria-label="Закрыть" value="close">Закрыть</button>
-               <!--     Добавила общий класс для крестика   -->
-            </form>
-         </div>
+    </div>
+    <!--Popup добавление карточки пользователем-->
+    <div class="popup popup_element">
+      <div class="popup__container">
+        <form
+          class="popup__form popup__form_element"
+          name="card"
+          novalidate
+        >
+          <h2 class="popup__title">Новое место</h2>
+          <label class="popup__form-field">
+            <input
+              class="popup__input popup__input_element_name"
+              name="name"
+              id="element-name-input"
+              value=""
+              type="text"
+              placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span
+              class="popup__input-error"
+              id="element-name-input-error"
+            ></span>
+          </label>
+          <label class="popup__form-field">
+            <input
+              class="popup__input popup__input_element_url"
+              name="link"
+              id="url-input"
+              value=""
+              type="url"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <!--     Добавила класс, чтобы отделить этот сейв от редактирования профиля     -->
+            <span class="popup__input-error" id="url-input-error"></span>
+          </label>
+          <button
+            class="popup__button popup__button_disabled popup__button_active_submit popup__button_active_save-card"
+            type="submit"
+            aria-label="Создать"
+            value="save"
+          >
+            Создать
+          </button>
+          <button
+            class="popup__button popup__button_active_exit popup__close"
+            type="button"
+            aria-label="Закрыть"
+            value="close"
+          >
+            Закрыть
+          </button>
+          <!--     Добавила общий класс для крестика   -->
+        </form>
       </div>
-      <!--Popup открытие картинки-->
-      <div class="popup popup_img">
-         <div class="popup__item-container">
-            <button class="popup__button popup__button_item_exit popup__close" type="button" aria-label="Закрыть" value="close">Закрыть</button>
-            <!--     Добавила общий класс для крестика   -->
-            <img class="popup__item" alt="открытая картинка из галлереи.">
-            <h2 class="popup__item-subject"></h2>
-         </div>
+    </div>
+    <!--Popup открытие картинки-->
+    <div class="popup popup_img">
+      <div class="popup__item-container">
+        <button
+          class="popup__button popup__button_item_exit popup__close"
+          type="button"
+          aria-label="Закрыть"
+          value="close"
+        >
+          Закрыть
+        </button>
+        <!--     Добавила общий класс для крестика   -->
+        <img class="popup__item" alt="открытая картинка из галлереи." />
+        <h2 class="popup__item-subject"></h2>
       </div>
-      <!--Добавление карточек из коробки-->
-      <template id="card-template">
-         <article class="element">
-            <button class="element__trash-button" aria-label="Удалить" type="button"></button>
-            <img class="element__item" src="#" alt="">
-            <div class="element__wrapper">
-               <h2 class="element__subject"></h2>
-               <button class="element__like-button" aria-label="Нравится" type="button"></button>
-            </div>
-         </article>
-      </template>
+    </div>
+    <!--Popup изменение аватара-->
+    <div class="popup popup_avatar-change">
+      <div class="popup__container">
+        <!--добавить в верстку-->
+        <form
+          class="popup__form popup__form_avatar"
+          name="avatar"
+          novalidate
+        >
+        <label class="popup__form-field">
+        <input
+          class="popup__input popup__input_avatar-url"
+          name="link"
+          placeholder="ссылка на аватар"
+          id="url-avatar-input"
+          required
+        />
+        <span class="popup__input-error" id="avatar-input-error"></span>
+        </label>
+        <button
+          class="popup__button popup__button_disabled popup__button_active_submit popup__button_active_avatar-change"
+          type="submit"
+          aria-label="Создать"
+          value="save"
+        >
+          Сохранить
+        </button>
+        <button
+          class="popup__button popup__button_active_exit popup__close"
+          type="button"
+          aria-label="Закрыть"
+          value="close"
+        >
+          Закрыть
+        </button>
+        </form>
+      </div>
+    </div>
+    <!--Popup удаление карточки-->
+    <div class="popup popup_delete">
+      <div class="popup__container">
+        <form
+          class="popup__form popup__form_delete-card"
+          name="card"
+          novalidate
+        >
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button
+            class="popup__button popup__button_disabled popup__button_active_submit popup__button_active_delete-card"
+            type="submit"
+            aria-label="Создать"
+            value="save"
+          >
+            Да
+          </button>
+          <button
+            class="popup__button popup__button_active_exit popup__close"
+            type="button"
+            aria-label="Закрыть"
+            value="close"
+          >
+            Закрыть
+          </button>
+        </form>
+      </div>
+    </div>
+    <!--Добавление карточек из коробки-->
+    <template id="card-template">
+      <article class="element">
+        <button
+          class="element__trash-button"
+          aria-label="Удалить"
+          type="button"
+        ></button>
+        <img class="element__item" src="#" alt="" />
+        <div class="element__wrapper">
+          <h2 class="element__subject"></h2>
+          <button
+            class="element__like-button"
+            aria-label="Нравится"
+            type="button"
+          ></button>
+          <span class="element__like-button_counter"></span> <!--добавить в верстку-->
+        </div>
+      </article>
+    </template>
 
-     <!--<script type="module" src="pages/index.js"></script>-->
-     
-   </body>
+    <!--<script type="module" src="pages/index.js"></script>-->
+  </body>
 </html>

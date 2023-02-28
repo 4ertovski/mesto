@@ -1,3 +1,4 @@
+
 .popup__container {
   padding: 34px 36px 34px;
   max-width: 430px;
@@ -19,3 +20,12 @@
     padding: 25px 22px;
   }
 }
+
+/*
+
+.popup__container {
+  display: flex;
+  width: min-content;
+  height: min-content;
+  position: relative;
+}*/

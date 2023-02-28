@@ -1,8 +1,9 @@
 export default class Section {
-  constructor({ items, renderer }, elementsContainer) {
+  constructor({ items, renderer }, containerSelector /*elementsContainer*/) {
     this._items = items;
     this._renderer = renderer;
-    this._container = elementsContainer;
+    //this._container = elementsContainer;
+    this._container = document.querySelector(containerSelector);
   }
   // публичный метод, который принимает DOM-элемент и добавляет его в контейнер
   addItem(element) {
@@ -10,7 +11,7 @@ export default class Section {
   }
   // публичный метод, отвечающий за отрисовку всех элементов
   renderItems() { 
-    this._items.forEach((item) => {
+    this._items.reverse().forEach((item) => {
       this._renderer(item); //отрисовка каждого элемента осуществляется функцией renderer 
     });
   }

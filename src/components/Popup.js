@@ -2,7 +2,6 @@ export default class Popup {
   // принимает в конструктор единственный параметр -- селектор попапа
   constructor(popupSelector) {
     this._popup = popupSelector;
-    //this._popupElement
     this._handleEscClose = this._handleEscClose.bind(this);
   }
   // публичные методы, отвечающие за открытие и закрытие попапа

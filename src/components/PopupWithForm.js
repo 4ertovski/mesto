@@ -4,8 +4,18 @@ export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._popupForm = this._popup.querySelector(".popup__form");
+    console.log(this._popupForm);
     this._inputList = this._popupForm.querySelectorAll(".popup__input");
+    console.log(this._inputList);
+    this._submitButton = this._popup.querySelector(".popup__button_active_submit");
     this._handleFormSubmit = handleFormSubmit;
+  }
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._submitButton.textContent = 'Сохранение...';
+    } else {
+      this._submitButton.textContent = 'Сохранить';
+    }
   }
   // приватный метод, который собирает данные со всех полей формы
   _getInputValues() {
