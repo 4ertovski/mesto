@@ -125,7 +125,7 @@ const popupEditAvatar = new PopupWithForm(popupAddAvatar, (data) => {
             popupEditAvatar.renderLoading(false);})
 })
 
-Promise.all([api.updateUserInfo(), api.getCards()])
+Promise.all([api.getUserInfo(), api.getCards()])
 .then(([data, initialCards]) => {
    const userId = data._id;
     dataUserInfo.setUserInfo(data);

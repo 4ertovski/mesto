@@ -1,34 +1,24 @@
 export default class UserInfo {
   // Класс принимает в конструктор объект с селекторами двух элементов: имени пользователя и информации о себе.
-  constructor(data) {
-    this._profileName = data.name;
-    this._profileDefinition = data.about;
-    this._userAvatar = data.avatar;
+  constructor({selectorName, selectorAbout, selectorAvatar}) {
+    this._profileName = document.querySelector(selectorName);
+    this._profileDefinition = document.querySelector(selectorAbout);
+    this._userAvatar = document.querySelector(selectorAvatar);
   }
   // публичный метод, который возвращает объект с данными пользователя. подставляет данные пользователя при открытии.
   getUserInfo() {
     this._userInfo = {
-      name: this._profileName,
-      about: this._profileDefinition,
-      avatar: this._userAvatar,
+      selectorName: this._profileName.textContent,
+      selectorAbout: this._profileDefinition.textContent,
+      selectorAvatar: this._userAvatar.src,
     };
     return this._userInfo;
   }
   // публичный метод, который принимает новые данные пользователя и добавляет их на страницу
-  setUserInfo(newUserData) {
-    this._profileName.textContent = newUserData.name;
-    this._profileDefinition.textContent = newUserData.about;
-    //this._userAvatar.src = newUserData.avatar;
+  setUserInfo(data) {
+    this._profileName.textContent = data.name;
+    this._profileDefinition.textContent = data.about;
+    this._userAvatar.src = data.avatar;
   }
-  setUserAvatar(link) {
-    this._userAvatar.src = link;
-  }
-  setId(id) {
-    this._id = id;
-  }
-  getId() {
-    return this._id;
-  }
-
 }
 
