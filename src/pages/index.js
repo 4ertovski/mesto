@@ -11,29 +11,22 @@ import Api from "../components/Api.js";
 
 //импорт переменных
 import {
-    //initialCards,
     config,
     formEditProfile,
     profileEdit,
     profileAddButton,
     formAddElement,
-    cardsContainer,
     popupProfileEdit,
     popupElementAdd,
     popupItemOpen,
-    profileName,
-    profileDefinition,
     profileNameInput,
     profileTitleInput,
-    userAvatar,
     popupAddAvatarForm,
     popupAddAvatar,
     popupDeleteCard,
-    popupCloseButtonAddCard,
-    popupCloseButtonProfileEdit,
     avatarContainer,
-    popupDeleteCardForm,
 } from "../utils/variable.js";
+
 let userId;
 
 const api = new Api({baseUrl:'https://mesto.nomoreparties.co/v1/cohort-60',
@@ -52,14 +45,8 @@ validationFormCard.enableValidation();
 const validationForm = new FormValidator(config, formEditProfile);
 validationForm.enableValidation();
 
-const validationAvatarForm = new FormValidator(config, popupAddAvatar);
+const validationAvatarForm = new FormValidator(config, popupAddAvatarForm);
 validationAvatarForm.enableValidation();
-
-// создание новой карточки: лайки, снятие лайка
-// удаление своей карточки
-// обновление информации о пользователе
-// обновление аватара пользователя
-
 
 const cards = new Section((data) => {
     const cardItem = handleNewCard(data).generateCard();
@@ -74,10 +61,9 @@ const dataUserInfo = new UserInfo({
     userAvatar: ".profile__avatar-image",
 })
 
-
 // открыть превью картинки
 const imageOpen = new PopupWithImage(popupItemOpen);
-imageOpen.setEventListeners();
+
 
 const popupWithInfoForm = new PopupWithForm(popupProfileEdit, (data) => {
     popupWithInfoForm.renderLoading(true, "Сохранение...");
@@ -94,12 +80,6 @@ const popupWithInfoForm = new PopupWithForm(popupProfileEdit, (data) => {
             popupWithInfoForm.renderLoading(false);})
 })
 
-popupWithInfoForm.setEventListeners();
-
-popupCloseButtonProfileEdit.addEventListener('click', () => {
-    popupWithInfoForm.close();
-});
-
 const popupWithAddForm = new PopupWithForm(popupElementAdd, (data) => {
     popupWithAddForm.renderLoading(true, "Сохранение...");
     api.addNewCard(data)
@@ -115,20 +95,7 @@ const popupWithAddForm = new PopupWithForm(popupElementAdd, (data) => {
             popupWithAddForm.renderLoading(false);})
 })
 
-popupWithAddForm.setEventListeners();
-
-// Закрытие формы редактирования профиля
-popupCloseButtonAddCard.addEventListener('click', () => {
-    popupWithAddForm.close();
-});
-profileEdit.addEventListener("click", () => {
-    popupWithInfoForm.open();
-    profileNameInput.value = profileName.textContent;
-    profileTitleInput.value = profileDefinition.textContent;
-    validationForm.resetValidation();
-});
-
-const popupRemoveCard = new PopupWithConfirmation(popupDeleteCardForm, (card) => {
+const popupRemoveCard = new PopupWithConfirmation(popupDeleteCard, (card) => {
     popupRemoveCard.renderLoading(true, "Удаление...");
     api.deleteCard(card._data._id)
         .then(() => {
@@ -141,9 +108,9 @@ const popupRemoveCard = new PopupWithConfirmation(popupDeleteCardForm, (card) =>
         .finally(() => {
             popupRemoveCard.renderLoading(false);})
 })
- popupRemoveCard.setEventListeners();
 
-const popupEditAvatar = new PopupWithForm(popupAddAvatarForm, (data) => {
+
+const popupEditAvatar = new PopupWithForm(popupAddAvatar, (data) => {
     popupEditAvatar.renderLoading(true, 'Сохранение...');
     api
         .updateAvatar(data.link)
@@ -152,16 +119,16 @@ const popupEditAvatar = new PopupWithForm(popupAddAvatarForm, (data) => {
             popupEditAvatar.close();
         })
         .catch((err) => {
-        console.log(`Ошибка.....: ${err}`);
+        console.log(`Ошибка: ${err}`);
     })
         .finally(() => {
             popupEditAvatar.renderLoading(false);})
 })
-popupEditAvatar.setEventListeners()
+
 Promise.all([api.updateUserInfo(), api.getCards()])
-.then(([info, initialCards]) => {
-   const userId = info._id;
-    dataUserInfo.setUserInfo(info);
+.then(([data, initialCards]) => {
+   const userId = data._id;
+    dataUserInfo.setUserInfo(data);
     cards.renderItems(initialCards);
 })
     .catch((err) => {
@@ -204,6 +171,16 @@ function handleNewCard(card) {
     return newCard;
 }
 
+popupWithAddForm.setEventListeners();
+popupWithInfoForm.setEventListeners();
+popupEditAvatar.setEventListeners();
+popupRemoveCard.setEventListeners();
+imageOpen.setEventListeners();
+
+avatarContainer.addEventListener('click', () => {
+    popupEditAvatar.open();
+    validationAvatarForm.resetValidation();
+});
 profileEdit.addEventListener("click", () => {
     popupWithInfoForm.open();
     const { name, about } = dataUserInfo.getUserInfo();
@@ -211,112 +188,12 @@ profileEdit.addEventListener("click", () => {
     profileTitleInput.value = about;
     validationForm.resetValidation();
 });
+
 profileAddButton.addEventListener("click", () => {
     popupWithAddForm.open();
     validationFormCard.resetValidation();
 });
-    avatarContainer.addEventListener('click', () => {
-        popupEditAvatar.open();
-        validationAvatarForm.resetValidation();
-    });
 
-
-/*
-api.getUserInfo()
-    .then(data => {
-        const {name, about, avatar} = data;
-            profileName.textContent =  name;
-            profileDefinition.textContent = about;
-            userAvatar.src = avatar;
-    })
-    .catch((err) => {
-        console.error(`Ошибка загрузки начальных данных. Ошибка: ${err}.`);
-    });
-
-let userId = null
-let cardsArr = [];
-let cardsList = {};
-
-//Изначальная отрисовка данных о пользователе
-api.getCards()
-    .then((data) => {
-        console.log(`Информация получена с сервера.`);
-        userId = userInfo._id
-        //Создадим массив из карточек из итогового массива
-        cardsArr = data.map(serverItem => {
-            return {
-                name: serverItem.name,
-                link: serverItem.link,
-                likes: serverItem.likes
-            };
-        })
-        const createCard = (param) => {
-            const card = new Card(param, '#card-template', {
-                handleCardClick: () => {
-                    popupItemOpen.open(param);
-                }
-            });
-            return card;
-        }
-        // Вставляем карточки в разметку
-        cardsList = new Section({
-                items: cardsArr,
-                renderer: (list) => {
-                    const card = createCard(list)
-                    const cardElement = card.generateCard();
-                    cardsList.addItem(cardElement);
-                }
-            },
-            cardsContainer);
-        cardsList.renderItems();
-
-    })
-    .catch((err) => {
-        console.log(`Ошибка загрузки начальных данных. Ошибка: ${err}.`);
-        cardsArr = initialCards;
-    })
-const renderLoading = (popup, isLoading = false, title = 'Сохранить', loadingTitle = 'Сохранение...') => {
-    const button = popup.querySelector('.popup__button_active_submit')
-
-    button.textContent = isLoading ? loadingTitle : title
-}
-
-const popupWithAddForm = new PopupWithForm(popupElementAdd, {
-    submit: (data) => {
-        renderLoading(popupElementAdd, true, 'Создать', 'Создание...')
-
-        api
-            .addCard(data)
-            .then(data => {
-                cardsList.addItem(cardElement(data))
-                popupWithAddForm.close()
-            })
-            .catch(err => console.log(`Не удалось сохранить карточку. Ошибка:${err}`))
-            .finally(() => {
-                renderLoading(postNewCard, false, 'Создать', 'Создание...')
-            })
-    }
-});
-
-const popupWithInfoForm = new PopupWithForm(popupProfileEdit, {
-    submit: (data) => {
-        api.updateUserInfo({
-            name: data['name'],
-            about: data['about']
-        })
-            .then((info) => {
-                userInfo.setUserInfo({
-                    name: info.name,
-                    about: info.about
-                });
-                profileName.textContent = profileNameInput.value;
-                profileDefinition.textContent = profileTitleInput.value;
-                popupWithInfoForm.close();
-            })
-            .catch(err => console.log(`Ошибка при обновлении информации о пользователе. Ошибка: ${err}`));
-    }
-});
-*/
 
 
 /*
@@ -390,22 +267,22 @@ profileAddButton.addEventListener("click", () => {
 /*Метод Element.closest() возвращает ближайший родительский элемент (или сам элемент),
  который соответствует заданному CSS-селектору или null, если таковых элементов вообще нет.*/
 
-/*Метод prepend позволяет вставить в начало какого-либо элемента другой элемент. 
+/*Метод prepend позволяет вставить в начало какого-либо элемента другой элемент.
 Параметром метод принимает элемент, как правило созданный через createElement, либо строку.
  Можно добавить сразу несколько элементов или строк, перечислив их через запятую.*/
 
-/* Метод Element.append() вставляет узлы или строки с текстом в конец Element. 
+/* Метод Element.append() вставляет узлы или строки с текстом в конец Element.
 Строки с текстом вставляются как текстовое содержимое. */
 
 /* Метод .cloneNode() объекта Node создает и возвращает копию узла, для которого он был вызван.*/
 
 /* setAttribute задает значение атрибута указанного элемента.
-  Если атрибут уже существует, значение обновляется; 
+  Если атрибут уже существует, значение обновляется;
   в противном случае добавляется новый атрибут с указанным именем и значением.*/
 
 /* Метод addEventListener() позволяет добавлять обработчики событий к любому объекту */
 
-/*Если класс у элемента есть, метод classList.toggle ведёт себя как classList.remove и класс у элемента убирает. 
+/*Если класс у элемента есть, метод classList.toggle ведёт себя как classList.remove и класс у элемента убирает.
 А если указанного класса у элемента нет, то classList.toggle, как и classList.add, добавляет элементу этот класс.*/
 
 /* Метод preventDefault () интерфейса Event сообщает User agent, что если событие не обрабатывается явно,
@@ -426,7 +303,7 @@ profileAddButton.addEventListener("click", () => {
 
 
 /*
-Если будет интересно, можно универсально создать экземпляры валидаторов всех форм, поместив их все в один объект, 
+Если будет интересно, можно универсально создать экземпляры валидаторов всех форм, поместив их все в один объект,
 а потом брать из него валидатор по атрибуту name, который задан для формы. Это очень универсально и для любого кол-ва форм подходит.
 const formValidators = {}
 
@@ -445,7 +322,7 @@ const enableValidation = (config) => {
 };
 
 enableValidation(config);
- 
+
 И теперь можно использовать валидаторы для деактивации кнопки и тд
 
 formValidators[ profileForm.getAttribute('name') ].resetValidation()
@@ -454,136 +331,3 @@ formValidators[ profileForm.getAttribute('name') ].resetValidation()
 formValidators['profile-form'].resetValidation()
 */
 
-/*
-/// Открытие закрытие попапов
-function openPopup(popup) {
-  popup.classList.add("popup_opened");
-  document.addEventListener("keydown", closeByEscape);
-  //popup.addEventListener("mousedown", closeByClickOverlay);
-  //closeByClickOverlay Вам не нужна, так как овелей обрабатывается универсально с крестиками уже на 137й строчке
-  //validationForm.resetValidation();
-  //validationFormCard.resetValidation();
-  //validationForm.disableSubmitBtn();
-}
-
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", closeByEscape);
-  //popup.removeEventListener("mousedown", closeByClickOverlay);
-}
-
-//Закрытие попапа нажатием на Esc
-function closeByEscape(e) {
-  const key = e.key;
-  if (key === "Escape" || key === "Esc") {
-    const openedPopup = document.querySelector(".popup_opened");
-    closePopup(openedPopup);
-  }
-}
-
-//Закрытие попапа нажатием на оверлей
-
-function closeByClickOverlay(e) {
-  if (e.target === e.currentTarget) {
-    closePopup(e.currentTarget);
-  }
-}
-
-
-// Открытие попапа просмотра картинок
-export default function openImage(name, link) {
-  imageElemTitle.textContent = name;
-  imageElemImage.src = link;
-  imageElemTitle.alt = name;
-  openPopup(popupItemOpen);
-}
-
-//рендер карточек
-function renderElement(data) {
-  // создание карточек с помощью класса
-  const card = new Card(data, "#card-template", openImage);
-  const templateElement = card.generateCard();
-  return templateElement;
-}
-initialCards.forEach((item) => {
-  cardsContainer.append(renderElement(item));
-});
-
-// ф-ия сохранения карточки с данными в форму
-function handleFormSubmitCard(evt) {
-  evt.preventDefault();
-  // сами создаем объект, который будем передавать в renderElement
-  const elementCard = {
-    name: cardTitle.value,
-    link: cardURL.value,
-  };
-  cardsContainer.prepend(renderElement(elementCard)); // добавляем новую карточку
-
-  renderElement(elementCard, cardsContainer);
-  closePopup(popupElementAdd);
-  formAddElement.reset(); //сброс полей инпутов
-}
-
-// Функция для открытия попапа
-function openEditPopup(e) {
-  e.preventDefault();
-  profileNameInput.value = profileName.textContent;
-  profileTitleInput.value = profileDefinition.textContent;
-
-  validationForm.resetValidation();
-  //validationForm.activateButton();
-
-  openPopup(popupProfileEdit);
-}
-
-/// Кнопка добавления фотографии
-
-function openAddPopup() {
-  openPopup(popupElementAdd);
-  validationFormCard.resetValidation();
-  //formAddCard.reset();
-}
-
-// Изменение данных имени пользователя формы, preventDefault сбрасывает значения формы до дефолтных
-
-function saveProfileInfo(e) {
-  e.preventDefault();
-
-  profileName.textContent = profileNameInput.value;
-  profileDefinition.textContent = profileTitleInput.value;
-
-  closePopup(popupProfileEdit);
-}
-
-popups.forEach((popup) => {
-  popup.addEventListener("mousedown", (e) => {
-    if (e.target.classList.contains("popup_opened")) {
-      closePopup(popup);
-    }
-    if (e.target.classList.contains("popup__close")) {
-      closePopup(popup);
-    }
-  });
-});
-
-formEditProfile.addEventListener("submit", saveProfileInfo);
-profileEdit.addEventListener("click", openEditPopup);
-profileAddButton.addEventListener("click", openAddPopup);
-popupElementAdd.addEventListener("submit", handleFormSubmitCard);
-*/
-
-/*
-popupWithProfileEditForm.setEventListeners();
-
-profileAddButton.addEventListener("click", () => {
-  popupWithAddForm.open();
-});
-
-popupCloseButtonProfileEdit.addEventListener("click", () => {
-  popupWithProfileEditForm.close();
-});
-
-popupCloseButtonAddCard.addEventListener("click", () => {
-  popupWithAddForm.close();
-});
-*/
