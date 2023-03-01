@@ -25,6 +25,7 @@ import {
     popupAddAvatar,
     popupDeleteCard,
     avatarContainer,
+    popupCloseButtonAvatar,
 } from "../utils/variable.js";
 
 let userId;
@@ -177,6 +178,7 @@ popupEditAvatar.setEventListeners();
 popupRemoveCard.setEventListeners();
 imageOpen.setEventListeners();
 
+//popupCloseButtonAvatar
 avatarContainer.addEventListener('click', () => {
     popupEditAvatar.open();
     validationAvatarForm.resetValidation();

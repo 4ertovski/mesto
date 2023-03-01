@@ -56,11 +56,16 @@ export const profileAddButton = document.querySelector(
     ".profile__button_active_add"
 ); //кнопка, открывающая попап с возможностью добавления карточки
 export const popupCloseButtonProfileEdit = document.querySelector(".popup__close");
-export const popupCloseButtonAddCard = document.querySelector(".popup__button_active_exit")
+export const popupCloseButtonAddCard = document.querySelector(".popup__button_active_exit");
+
+export const popupCloseButtonAvatar = document.querySelector(".profile__button_edit-avatar")
 
 // form
 export const formEditProfile = document.querySelector(".popup__form_profile");
 export const popupAddAvatarForm = popupAddAvatar.querySelector(".popup__form_avatar");
+
+//export const popupAddAvatarForm = document.querySelector(".popup__form_avatar");
+
 export const popupDeleteCardForm = popupDeleteCard.querySelector(".popup__form_delete-card");
 export const formAddElement = document.querySelector(".popup__form_element");
 export const formAddCard = popupElementAdd.querySelector(
