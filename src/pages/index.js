@@ -29,9 +29,6 @@ import {
 import './index.css';
 
 
-//---------------------------
-//      popups validation
-//---------------------------
 const validationFormProfile= new FormValidator(config, popupFormProfile);
 validationFormProfile.enableValidation();
 const validationFormCard = new FormValidator(config, popupFormCard);
