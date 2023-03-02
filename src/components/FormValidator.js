@@ -7,14 +7,14 @@ export default class FormValidator {
     this._inputErrorClass = validationConfig.inputErrorClass
     this._errorClass = validationConfig.errorClass
   }
-  //показ ошибок в спане
+
   _showInputError(inputElement, errorMessage) {
     const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._errorClass);
   };
-  //удаление ошибок из спана
+
   _hideInputError(inputElement) {
     const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
@@ -27,11 +27,9 @@ export default class FormValidator {
         this._showInputError(inputElement, inputElement.validationMessage) :
         this._hideInputError(inputElement);
   };
-  //проверка валидности по каждому элементу
   _hasInvalidInput(inputList) {
     return inputList.some((inputElement) => !inputElement.validity.valid);
   };
-  //смена состояния кнопки
   _toggleButtonState(inputList, buttonElement) {
     if (this._hasInvalidInput(inputList)) {
       buttonElement.classList.add(this._inactiveButtonClass);
@@ -42,9 +40,9 @@ export default class FormValidator {
     }
   };
   _setEventListeners() {
-    const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));  // Найдём все поля формы и сделаем из них массив
-    const buttonElement = this._form.querySelector(this._submitButtonSelector); // Найдём в текущей форме кнопку отправки
-    this._toggleButtonState(inputList, buttonElement);  // Вызовем toggleButtonState, чтобы не ждать ввода данных в поля
+    const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+    const buttonElement = this._form.querySelector(this._submitButtonSelector);
+    this._toggleButtonState(inputList, buttonElement);
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
@@ -52,13 +50,10 @@ export default class FormValidator {
       });
     });
   };
-  // дописал метод очистки ошибок
   resetValidation() {
-    const inputList = Array.from(this._form.querySelectorAll(this._inputSelector)); // определяем инпуты
-    const buttonElement = this._form.querySelector(this._submitButtonSelector); // определяем кнопку
-    // для каждого инпута проводим проверку наличия класса ошибки
+    const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+    const buttonElement = this._form.querySelector(this._submitButtonSelector);
     inputList.forEach(inputElement => {
-      //если находим ошибку то убираем ее
       if (inputElement.classList.contains(this._inputErrorClass)) {
         this._hideInputError(inputElement);
       }

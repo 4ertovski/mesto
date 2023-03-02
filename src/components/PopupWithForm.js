@@ -8,10 +8,10 @@ export default class PopupWithForm extends Popup {
 
 //метод собирает все поля формы
   _getInputValues() {
-    this._inputList = Array.from(this._popup.querySelectorAll('.popup__input')); // найти все инпуты в попапе и сделать из них массив
-    this._formValue = {}; // создать объект
-    this._inputList.forEach(item => { // в массиве инпутов для каждого элемента нужно
-      this._formValue[item.name] = item.value; // записать ключом объекта значение аттрибута "name"
+    this._inputList = Array.from(this._popup.querySelectorAll('.popup__input'));
+    this._formValue = {};
+    this._inputList.forEach(item => {
+      this._formValue[item.name] = item.value;
     });
     return this._formValue
   }

@@ -16,11 +16,9 @@ export default class PopupWithConfirmation extends Popup {
         super.setEventListeners();
     }
 
-
     setHandleSubmit(func) {
         this._handleSubmit = func;
     }
-
 
     open() {
         this.loaderHandler('Да');

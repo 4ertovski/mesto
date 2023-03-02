@@ -24,27 +24,27 @@ export default class Card {
   }
 
   generateCard() {
-    this._card = this._getTemplateLayout(); // клонируем шаблон
-    const popupImage = this._card.querySelector('.element__item') // находим имг на карте
-    const popupImageText = this._card.querySelector('.element__subject') // находим название карты
+    this._card = this._getTemplateLayout();
+    const popupImage = this._card.querySelector('.element__item')
+    const popupImageText = this._card.querySelector('.element__subject')
     const likeCounter = this._card.querySelector('.element__like-button_counter')
 
-    popupImage.src = this._link; // находим изображение и присваиваем ссылку на параметр
-    popupImage.alt = this._name; // устанавливаем атрибут альт для картинки с названием нейма
-    popupImageText.textContent = this._name; // находим титл и присваиваем текст на параметр функции
-    likeCounter.textContent = `${this._likes.length}`; //вывести длину массива как значение количества лайков
+    popupImage.src = this._link;
+    popupImage.alt = this._name;
+    popupImageText.textContent = this._name;
+    likeCounter.textContent = `${this._likes.length}`;
 
     if (this._likes.find((like) => like._id === this._myID)) {
-      this._card.querySelector('.element__like').classList.add('element__like-button_active');
+      this._card.querySelector('.element__like-button').classList.add('element__like-button_active');
     };
 
 
-    if (this._owner._id === this._myID) {  // если создатель карты - я, то навесить на карту кнопку удаления
+    if (this._owner._id === this._myID) {
       this._card.querySelector('.element__trash-button').classList.add('element__trash-button_active')
     }
 
     this._setCardListeners()
-    return this._card;   // возвращаем карту с элементами слушателями и параметрами
+    return this._card;
   }
 
   counterLike(likeArray) {
@@ -58,7 +58,7 @@ export default class Card {
   }
 
   _setLikeHandler() {
-    const userLike = this._card.querySelector('.element__like');
+    const userLike = this._card.querySelector('.element__like-button');
     if (userLike.classList.contains('element__like-button_active')) {
       this._handleLikeRemover()
     } else {
@@ -71,8 +71,8 @@ export default class Card {
   }
 
   _setCardListeners () {
-    this._card.querySelector('.element__like-button').addEventListener('click', () => this._setLikeHandler()); // ставим слушатель на лайк
-    this._card.querySelector('.element__trash-button').addEventListener('click', () => this._handleRemoveCard(this._card)); // слушатель на помойку
-    this._card.querySelector('.element__item').addEventListener('click',() => this._handleCardClick()); // коллбек на открытие попапа имг
+    this._card.querySelector('.element__like-button').addEventListener('click', () => this._setLikeHandler());
+    this._card.querySelector('.element__trash-button').addEventListener('click', () => this._handleRemoveCard(this._card));
+    this._card.querySelector('.element__item').addEventListener('click',() => this._handleCardClick());
   }
 }

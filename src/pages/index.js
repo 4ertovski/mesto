@@ -9,19 +9,19 @@ import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import UserInfo from '../components/UserInfo.js';
 import {
   config,
-  checkProfileContainer,
-  checkPlaceContainer,
-  checkAvatarContainer,
+  popupFormProfile,
+  popupFormCard,
+  popupFormAvatar,
   userSetting,
   popupImage,
   popupAvatar,
-  popupConfirm,
+  popupDeleteCard,
   editProfileButton,
   popupProfile,
   nameInput,
   jobInput,
-  addPlaceButton,
-  popupPlace,
+  addCardButton,
+  popupCard,
   apiConfig,
   avatarEditButton
 } from '../utils/variable.js'
@@ -32,26 +32,24 @@ import './index.css';
 //---------------------------
 //      popups validation
 //---------------------------
-const profileContainer= new FormValidator(config, checkProfileContainer);
-profileContainer.enableValidation();
-const placeContainer = new FormValidator(config, checkPlaceContainer);
-placeContainer.enableValidation();
-const avatarContainer = new FormValidator(config, checkAvatarContainer);
-avatarContainer.enableValidation()
+const validationFormProfile= new FormValidator(config, popupFormProfile);
+validationFormProfile.enableValidation();
+const validationFormCard = new FormValidator(config, popupFormCard);
+validationFormCard.enableValidation();
+const validationFormAvatar = new FormValidator(config, popupFormAvatar);
+validationFormAvatar.enableValidation()
 
-//---------------------------
-//      Class unit section
-//---------------------------
-const userInfoProfile = new UserInfo(userSetting);// userprofile unit class
+
+const userInfoProfile = new UserInfo(userSetting);
 const api = new Api(apiConfig);
 
 
-const openPopupPlaceAdd = new PopupWithForm(popupPlace, {
+const popupWithAddForm = new PopupWithForm(popupCard, {
   submitForm: (item) => {
     api.postUserCard(item)
         .then((item) => {
             createCard(item, false)
-          openPopupPlaceAdd.close()
+          popupWithAddForm.close()
         })
         .catch((err) => {
           console.log(err);
@@ -64,7 +62,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
       userInfoProfile.setUserInfo(userData);
       const myID = userData._id
 
-      const openPopupPlaceAdd = new PopupWithForm(popupPlace, {
+      const openPopupPlaceAdd = new PopupWithForm(popupCard, {
         submitForm: (item) => {
           api.postUserCard(item)
               .then((item) => {
@@ -77,10 +75,10 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
         }
       })
 
-      const starterCards = new Section({
+      const cards = new Section({
         renderer: (item => createCard(item, true))
       }, '.elements');
-      starterCards.renderItems(res);
+      cards.renderItems(res);
 
 
       openPopupPlaceAdd.setEventListeners();
@@ -107,10 +105,10 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
           },
 
           handleLikeSet: () => {
-            api.putLike(item._id) // обмен данными с сервером
+            api.putLike(item._id)
                 .then((item) => {
-                  card.counterLike(item.likes); // записываем в разметку длину массива из ответа сервера
-                  card.toggleLike(); // меняем стиль лайка
+                  card.counterLike(item.likes);
+                  card.toggleLike();
                 })
                 .catch((err) => {
                   console.log(err);
@@ -129,8 +127,8 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
           },
 
         })
-        if (boolean === true) {starterCards.addItemAppend(card.generateCard())}
-        else starterCards.addItemPrepend(card.generateCard())
+        if (boolean === true) {cards.addItemAppend(card.generateCard())}
+        else cards.addItemPrepend(card.generateCard())
 
       }
 
@@ -170,38 +168,24 @@ const profileForm = new PopupWithForm(popupProfile, {
 
 profileForm.setEventListeners();
 
-
-const openPopupConfirm = new PopupWithConfirmation(popupConfirm)
+const openPopupConfirm = new PopupWithConfirmation(popupDeleteCard)
 openPopupConfirm.setEventListeners();
-
-/* ----- end class unit section ----- */
-
-
-
-//генерация карты
-
-
-
-
-//---------------------------
-//      Popup handlers section
-//---------------------------
 
 editProfileButton.addEventListener('click', () => {
   const profile = userInfoProfile.getUserInfo();
   nameInput.value = profile.name;
   jobInput.value = profile.about;
-  profileContainer.resetValidation()
+  validationFormProfile.resetValidation()
   profileForm.open();
 });
 
-addPlaceButton.addEventListener('click', () => {
-  placeContainer.resetValidation()
-  openPopupPlaceAdd.open();
+addCardButton.addEventListener('click', () => {
+  validationFormCard.resetValidation()
+  popupWithAddForm.open();
 })
 
 avatarEditButton.addEventListener('click', () => {
-  avatarContainer.resetValidation()
+  validationFormAvatar.resetValidation()
   openPopupAvatar.open()
 });
 
@@ -274,136 +258,3 @@ formValidators[ profileForm.getAttribute('name') ].resetValidation()
 formValidators['profile-form'].resetValidation()
 */
 
-/*
-/// Открытие закрытие попапов
-function openPopup(popup) {
-  popup.classList.add("popup_opened");
-  document.addEventListener("keydown", closeByEscape);
-  //popup.addEventListener("mousedown", closeByClickOverlay);
-  //closeByClickOverlay Вам не нужна, так как овелей обрабатывается универсально с крестиками уже на 137й строчке
-  //validationForm.resetValidation();
-  //validationFormCard.resetValidation();
-  //validationForm.disableSubmitBtn();
-}
-
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", closeByEscape);
-  //popup.removeEventListener("mousedown", closeByClickOverlay);
-}
-
-//Закрытие попапа нажатием на Esc
-function closeByEscape(e) {
-  const key = e.key;
-  if (key === "Escape" || key === "Esc") {
-    const openedPopup = document.querySelector(".popup_opened");
-    closePopup(openedPopup);
-  }
-}
-
-//Закрытие попапа нажатием на оверлей
-
-function closeByClickOverlay(e) {
-  if (e.target === e.currentTarget) {
-    closePopup(e.currentTarget);
-  }
-}
-
-
-// Открытие попапа просмотра картинок
-export default function openImage(name, link) {
-  imageElemTitle.textContent = name;
-  imageElemImage.src = link;
-  imageElemTitle.alt = name;
-  openPopup(popupItemOpen);
-}
-
-//рендер карточек
-function renderElement(data) {
-  // создание карточек с помощью класса
-  const card = new Card(data, "#card-template", openImage);
-  const templateElement = card.generateCard();
-  return templateElement;
-}
-initialCards.forEach((item) => {
-  cardsContainer.append(renderElement(item));
-});
-
-// ф-ия сохранения карточки с данными в форму
-function handleFormSubmitCard(evt) {
-  evt.preventDefault();
-  // сами создаем объект, который будем передавать в renderElement
-  const elementCard = {
-    name: cardTitle.value,
-    link: cardURL.value,
-  };
-  cardsContainer.prepend(renderElement(elementCard)); // добавляем новую карточку
-
-  renderElement(elementCard, cardsContainer);
-  closePopup(popupElementAdd);
-  formAddElement.reset(); //сброс полей инпутов
-}
-
-// Функция для открытия попапа
-function openEditPopup(e) {
-  e.preventDefault();
-  profileNameInput.value = profileName.textContent;
-  profileTitleInput.value = profileDefinition.textContent;
-
-  validationForm.resetValidation();
-  //validationForm.activateButton();
-
-  openPopup(popupProfileEdit);
-}
-
-/// Кнопка добавления фотографии
-
-function openAddPopup() {
-  openPopup(popupElementAdd);
-  validationFormCard.resetValidation();
-  //formAddCard.reset();
-}
-
-// Изменение данных имени пользователя формы, preventDefault сбрасывает значения формы до дефолтных
-
-function saveProfileInfo(e) {
-  e.preventDefault();
-
-  profileName.textContent = profileNameInput.value;
-  profileDefinition.textContent = profileTitleInput.value;
-
-  closePopup(popupProfileEdit);
-}
-
-popups.forEach((popup) => {
-  popup.addEventListener("mousedown", (e) => {
-    if (e.target.classList.contains("popup_opened")) {
-      closePopup(popup);
-    }
-    if (e.target.classList.contains("popup__close")) {
-      closePopup(popup);
-    }
-  });
-});
-
-formEditProfile.addEventListener("submit", saveProfileInfo);
-profileEdit.addEventListener("click", openEditPopup);
-profileAddButton.addEventListener("click", openAddPopup);
-popupElementAdd.addEventListener("submit", handleFormSubmitCard);
-*/
-
-/*
-popupWithProfileEditForm.setEventListeners();
-
-profileAddButton.addEventListener("click", () => {
-  popupWithAddForm.open();
-});
-
-popupCloseButtonProfileEdit.addEventListener("click", () => {
-  popupWithProfileEditForm.close();
-});
-
-popupCloseButtonAddCard.addEventListener("click", () => {
-  popupWithAddForm.close();
-});
-*/

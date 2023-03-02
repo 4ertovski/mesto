@@ -10,37 +10,37 @@ export const config = {
 
 
 // для валидации
-export const checkProfileContainer = document.querySelector('.popup__form_profile'); // определяем форму редактирования профиля
-export const checkPlaceContainer = document.querySelector('.popup__form_element'); // определяем форму, откуда будем тянуть инпуты названия места и ссылку (попап2)
-export const checkAvatarContainer = document.querySelector('.popup__form_avatar') // попап аватарки
+export const popupFormProfile = document.querySelector('.popup__form_profile');
+export const popupFormCard = document.querySelector('.popup__form_element');
+export const popupFormAvatar = document.querySelector('.popup__form_avatar')
 
 //popups section
-export const popupProfile = document.querySelector('.popup_profile');// ищем обычный попап (попап1)
-export const popupPlace = document.querySelector('.popup_element'); // ищем попап новых мест (попап 2)
-export const popupImage = document.querySelector('.popup_img'); //ищем попап открытия изображений (попап 3)
-export const popupAvatar = document.querySelector('.popup_avatar') // попап аватарки (попап 4)
-export const popupConfirm = document.querySelector('.popup_delete-card') // попап подтверждения удаления карты (попап 5)
+export const popupProfile = document.querySelector('.popup_profile');
+export const popupCard = document.querySelector('.popup_element');
+export const popupImage = document.querySelector('.popup_img');
+export const popupAvatar = document.querySelector('.popup_avatar')
+export const popupDeleteCard = document.querySelector('.popup_delete-card')
 
-//inputs section
-export const nameInput = document.querySelector('.popup__input_profile_name'); // ищем инпут имени (попап 1)
-export const jobInput = document.querySelector('.popup__input_profile_title'); //ищем инпут профессии (попап 1)
+// инпуты
+export const nameInput = document.querySelector('.popup__input_profile_name');
+export const jobInput = document.querySelector('.popup__input_profile_title');
 
-//button/listeners section
-export const editProfileButton = document.querySelector('.profile__button_active_edit'); // ищем кнопку вызова попапа редактирования профиля
-export const addPlaceButton = document.querySelector('.profile__button_active_add'); // ищем кнопку вызова попапа добавления нового места
-export const avatarEditButton = document.querySelector('.profile__avatar-container') /*'.profile__edit-avatar'*/
+// кнопки
+export const editProfileButton = document.querySelector('.profile__button_active_edit');
+export const addCardButton = document.querySelector('.profile__button_active_add');
+export const avatarEditButton = document.querySelector('.profile__avatar-container')
 
-//on-page selectors
-export const currentName = document.querySelector('.profile__name'); // ищем текущее имя юзера на странице
-export const currentJob = document.querySelector('.profile__definition'); //ищем текущуюю профессию юзера на странице
-export const currentAvatar = document.querySelector('.profile__avatar')
+// профайл
+export const profileName = document.querySelector('.profile__name');
+export const profileJob = document.querySelector('.profile__definition');
+export const userAvatar = document.querySelector('.profile__avatar')
 
 
-//utiils section
+
 export const userSetting = {
-  name: currentName,
-  about: currentJob,
-  avatar: currentAvatar
+  name: profileName,
+  about: profileJob,
+  avatar: userAvatar
 }
 
 export const apiConfig = {

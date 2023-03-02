@@ -15,7 +15,7 @@ export default class Api {
     }
 
     // получение начальных данных от пользователя
-    getUserInfo() { // Запрос на загрузку данных пользователя
+    getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         })
@@ -46,14 +46,13 @@ export default class Api {
             .then(this._handleResponse)
     }
 
-
-    // смена аватары
+    // смена аватара
     patchAvatar(avatar) {
         return fetch(`${this._baseUrl}/users/me/avatar`,  {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                avatar: avatar.avatar
+                avatar: avatar.link
             })
         })
             .then(this._handleResponse)
@@ -64,14 +63,14 @@ export default class Api {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
-                name: item.title,
-                link: item.url
+                name: item.name,
+                link: item.link
             })
         })
             .then(this._handleResponse)
     }
 
-    //  постановка лаек
+    // лайк
     putLike(id) {
         return fetch(`${this._baseUrl}/cards/likes/${id}`, {
                 method: 'PUT',
@@ -81,7 +80,7 @@ export default class Api {
             .then(this._handleResponse)
     }
 
-    // снятие лаека
+    // удалить лайк
     deleteLike(id) {
         return fetch(`${this._baseUrl}/cards/likes/${id}`, {
                 method: 'DELETE',
