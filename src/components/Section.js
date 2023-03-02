@@ -1,19 +1,24 @@
 export default class Section {
-  constructor({ items, renderer }, containerSelector /*elementsContainer*/) {
-    this._items = items;
+  constructor ({
+                 // items,
+                 renderer}, containerSelector) {
+    // this._items = items
     this._renderer = renderer;
-    //this._container = elementsContainer;
-    this._container = document.querySelector(containerSelector);
+    this._containerSelector = document.querySelector(containerSelector);
   }
-  // публичный метод, который принимает DOM-элемент и добавляет его в контейнер
-  addItem(element) {
-    this._container.prepend(element);
-  }
-  // публичный метод, отвечающий за отрисовку всех элементов
-  renderItems() { 
-    this._items.reverse().forEach((item) => {
-      this._renderer(item); //отрисовка каждого элемента осуществляется функцией renderer 
+
+  renderItems(items) {
+    items.forEach((item) => {
+      this._renderer(item);
     });
+  }
+
+  addItemAppend(element) {
+    this._containerSelector.append(element);
+  }
+
+  addItemPrepend(element) {
+    this._containerSelector.prepend(element);
   }
 }
 

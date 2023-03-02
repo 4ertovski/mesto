@@ -4,9 +4,7 @@
   "main": "babel.config.js",
   "scripts": {
     "dev": "webpack serve",
-    "build": "webpack --mode production",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -27,7 +25,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.3",
     "cssnano": "^5.1.14",
-    "gh-pages": "^5.0.0",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.2",
     "postcss-loader": "^7.0.2",
@@ -36,9 +34,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "core-js": "^3.29.0",
-    "install": "^0.13.0",
-    "npm": "^9.5.1"
+    "core-js": "^3.27.2"
   },
   "description": ""
 }

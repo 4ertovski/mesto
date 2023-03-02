@@ -1,121 +1,52 @@
-import Api from "../components/Api";
-
-export const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 export const config = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   errorSelector: ".popup__input-error",
-  submitBtnSelector: ".popup__button_active_submit",
-  inactiveBtnClass: "popup__button_disabled",
+  submitButtonSelector: ".popup__button_active_submit",
+  inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__input-error_active",
 };
 
-// Переменные:
-export const userAvatar = document.querySelector(".profile__avatar-image");
-export const avatarContainer = document.querySelector(".profile__avatar");
 
-// popup
-export const popupDeleteCard = document.querySelector(".popup_delete");
-export const popupAddAvatar = document.querySelector(".popup_avatar-change");
-export const popupProfileEdit = document.querySelector(".popup_profile"); //попап с возможностью исправить информацию о пользователе
-export const popupElementAdd = document.querySelector(".popup_element"); //попап позволяющий добавить фото !
-export const popupItemOpen = document.querySelector(".popup_img"); //попап открывающий фото
+// для валидации
+export const checkProfileContainer = document.querySelector('.popup__form_profile'); // определяем форму редактирования профиля
+export const checkPlaceContainer = document.querySelector('.popup__form_element'); // определяем форму, откуда будем тянуть инпуты названия места и ссылку (попап2)
+export const checkAvatarContainer = document.querySelector('.popup__form_avatar') // попап аватарки
 
-// buttons
-export const profileEdit = document.querySelector(
-    ".profile__button_active_edit"
-); //кнопка, открывающая попап с информацией о пользователе
-export const profileAddButton = document.querySelector(
-    ".profile__button_active_add"
-); //кнопка, открывающая попап с возможностью добавления карточки
-export const popupCloseButtonProfileEdit = document.querySelector(".popup__close");
-export const popupCloseButtonAddCard = document.querySelector(".popup__button_active_exit");
+//popups section
+export const popupProfile = document.querySelector('.popup_profile');// ищем обычный попап (попап1)
+export const popupPlace = document.querySelector('.popup_element'); // ищем попап новых мест (попап 2)
+export const popupImage = document.querySelector('.popup_img'); //ищем попап открытия изображений (попап 3)
+export const popupAvatar = document.querySelector('.popup_avatar') // попап аватарки (попап 4)
+export const popupConfirm = document.querySelector('.popup_delete-card') // попап подтверждения удаления карты (попап 5)
 
-export const popupCloseButtonAvatar = document.querySelector(".profile__button_edit-avatar")
+//inputs section
+export const nameInput = document.querySelector('.popup__input_profile_name'); // ищем инпут имени (попап 1)
+export const jobInput = document.querySelector('.popup__input_profile_title'); //ищем инпут профессии (попап 1)
 
-// form
-export const formEditProfile = document.querySelector(".popup__form_profile");
-export const popupAddAvatarForm = popupAddAvatar.querySelector(".popup__form_avatar");
+//button/listeners section
+export const editProfileButton = document.querySelector('.profile__button_active_edit'); // ищем кнопку вызова попапа редактирования профиля
+export const addPlaceButton = document.querySelector('.profile__button_active_add'); // ищем кнопку вызова попапа добавления нового места
+export const avatarEditButton = document.querySelector('.profile__avatar-container') /*'.profile__edit-avatar'*/
 
-//export const popupAddAvatarForm = document.querySelector(".popup__form_avatar");
-
-export const popupDeleteCardForm = popupDeleteCard.querySelector(".popup__form_delete-card");
-export const formAddElement = document.querySelector(".popup__form_element");
-export const formAddCard = popupElementAdd.querySelector(
-    ".popup__form_element"
-);
-
-// метод querySelector() возвращает первый элемент (Element) документа, который соответствует указанному селектору или группе селекторов.
-//Если совпадений не найдено, возвращает значение null.
-
-// profile
-export const profileName = document.querySelector(".profile__name"); //имя пользователя
-export const profileDefinition = document.querySelector(".profile__definition"); //род деятельности
-export const profileNameInput = formEditProfile.querySelector(
-    ".popup__input_profile_name"
-);
-export const profileTitleInput = formEditProfile.querySelector(
-    ".popup__input_profile_title"
-);
-
-//elements
-export const cardsContainer = document.querySelector(".elements");
+//on-page selectors
+export const currentName = document.querySelector('.profile__name'); // ищем текущее имя юзера на странице
+export const currentJob = document.querySelector('.profile__definition'); //ищем текущуюю профессию юзера на странице
+export const currentAvatar = document.querySelector('.profile__avatar')
 
 
+//utiils section
+export const userSetting = {
+  name: currentName,
+  about: currentJob,
+  avatar: currentAvatar
+}
 
-/*
-export const templateCard = document
-  .querySelector("#card-template")
-  .content.querySelector(".element");
-//Элемент <template> предназначен для хранения «образца» разметки, невидимого и предназначенного для вставки куда-либо.
-//Содержимое тега <template> обрабатывается браузером. Оно доступно как DocumentFragment в свойстве тега content. Предполагается,
-//что мы, при необходимости, возьмём content и вставим, куда надо.
-
-export const profileTitle = popupProfileEdit.querySelector(".popup__title");
-export const elementTitle = popupElementAdd.querySelector(".popup__title");
-
-export const itemOpenImage = document.querySelector(".popup__item");
-export const itemOpenTitle = document.querySelector(".popup__item-subject");
-
-export const imageElemTitle = document.querySelector(".popup__item-subject");
-export const imageElemImage = document.querySelector(".popup__item");
-
-
-
-export const saveCardButton = document.querySelector(
-  ".popup__button_active_save_card"
-);
-export const cardTitle = document.querySelector(".popup__input_element_name");
-export const cardURL = document.querySelector(".popup__input_element_url");
-export const popupButton = document.querySelector(".popup__button");
-
-export const popups = document.querySelectorAll(".popup");*/
-
-
+export const apiConfig = {
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-60',
+  headers: {
+    authorization: '3aa61c49-fdf8-469f-ac89-ecfdfa4ec988',
+    'Content-Type': 'application/json'
+  }
+}

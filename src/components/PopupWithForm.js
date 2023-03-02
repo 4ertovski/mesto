@@ -1,47 +1,37 @@
-import Popup from "./Popup.js";
+import Popup from './Popup.js';
 
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector, handleFormSubmit) {
-    super(popupSelector);
-    this._popupForm = this._popup.querySelector(".popup__form");
-    console.log(this._popupForm);
-    this._inputList = this._popupForm.querySelectorAll(".popup__input");
-    console.log(this._inputList);
-    this._submitButton = this._popup.querySelector(".popup__button_active_submit");
-    this._handleFormSubmit = handleFormSubmit;
+  constructor(popupElement, {submitForm}) {
+    super(popupElement);
+    this._submitForm = submitForm;
   }
-  renderLoading(isLoading) {
-    if (isLoading) {
-      this._submitButton.textContent = 'Сохранение...';
-    } else {
-      this._submitButton.textContent = 'Сохранить';
-    }
-  }
-  // приватный метод, который собирает данные со всех полей формы
+
+//метод собирает все поля формы
   _getInputValues() {
-    const formValues = {};
-    this._inputList.forEach((input) => {
-      formValues[input.name] = input.value;
+    this._inputList = Array.from(this._popup.querySelectorAll('.popup__input')); // найти все инпуты в попапе и сделать из них массив
+    this._formValue = {}; // создать объект
+    this._inputList.forEach(item => { // в массиве инпутов для каждого элемента нужно
+      this._formValue[item.name] = item.value; // записать ключом объекта значение аттрибута "name"
     });
-    return formValues;
+    return this._formValue
   }
 
-  // перезаписывает родительский метод, не только добавляя обработчик по клику на иконку закрытия,
-  // но и обработчик сабмита формы
   setEventListeners() {
-    super.setEventListeners();
-    this._popupForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      this._handleFormSubmit(this._getInputValues());
-      this.close();
+    this._popup.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this.loaderHandler('Сохранение...');
+      this._submitForm(this._getInputValues())
     });
-    //super.setEventListeners();
+    super.setEventListeners();
   }
 
-  // перезаписывает родительский метод, чтобы сбрасывать форму при закрытии попапа
   close() {
     super.close();
-    this._popupForm.reset();
-    //super.close();
+    this._popup.querySelector('.popup__form').reset();
+  }
+
+  open() {
+    super.open();
+    this.loaderHandler('Сохранить');
   }
 }

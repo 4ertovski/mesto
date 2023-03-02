@@ -1,26 +1,29 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithConfirmation extends Popup {
-    constructor(popupSelector, handleFormSubmit) {
-        super(popupSelector);
-        this._popupForm = this._popup.querySelector(".popup__form");
-        console.log(this._popupForm);
-        this._handleFormSubmit = handleFormSubmit;
-        this._submitButton = this._popup.querySelector(".popup__button_active_save-card");
+    constructor (popupElement) {
+        super(popupElement);
+        this._submitButton = this._popup.querySelector('.popup__button_active_submit')
     }
+
     setEventListeners() {
+        this._submitButton.addEventListener('click', (evt) => {
+            evt.preventDefault();
+            this.loaderHandler('Удаление...');
+            this._handleSubmit();
+            this.close();
+        });
         super.setEventListeners();
-        this._popupForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            this._handleFormSubmit(this._data);
-        })
     }
-    open(data) {
+
+
+    setHandleSubmit(func) {
+        this._handleSubmit = func;
+    }
+
+
+    open() {
+        this.loaderHandler('Да');
         super.open();
-        this._data = data;
     }
-    close() {
-        super.close();
-        this._popupForm.reset();
-    }
-    }
+}
