@@ -21,10 +21,10 @@
              </div>
             <div class="profile__info">
                <div class="profile__wrapper">
-                  <h1 class="profile__name">Жак-Ив Кусто</h1>
+                  <h1 class="profile__name"></h1>
                   <button class="profile__button profile__button_active_edit" aria-label="Редактировать" type="button"></button>
                </div>
-               <p class="profile__definition">Исследователь океана</p>
+               <p class="profile__definition"></p>
             </div>
             <button class="profile__button profile__button_active_add" aria-label="Добавить" type="button"></button>
          </section>
@@ -121,9 +121,9 @@
      <div class="popup popup_avatar">
          <div class="popup__container">
              <form class="popup__form popup__form_avatar" name="avatar" novalidate>
-                 <h2 class="popup__title">Редактировать профиль</h2>
+                 <h2 class="popup__title">Обновить аватар</h2>
                  <label class="popup__form-field">
-                     <input class="popup__input popup__input_element_url"
+                     <input class="popup__input popup__input_avatar_url"
                             name="link"
                             id="url-input-avatar"
                             value=""
@@ -131,7 +131,7 @@
                             placeholder="Ссылка на аватар"
                             required>
                      <!--     Добавила класс, чтобы отделить этот сейв от редактирования профиля     -->
-                     <span class="popup__input-error" id="url-input-error-avatar"></span>
+                     <span class="popup__input-error" id="avatar-input-error"></span>
                  </label>
                  <!--     Добавила класс, чтобы отделить этот сейв от добавления карточки   -->
                  <button class="popup__button popup__button_disabled popup__button_active_submit popup__button_active_save-avatar" type="submit" aria-label="Сохранить" value="save">Сохранить</button>

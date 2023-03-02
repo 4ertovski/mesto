@@ -5,7 +5,7 @@ import Card from '../components/Card.js';
 import Api from '../components/Api.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
-import PopupWithConfirm from '../components/PopupWithConfirmation.js';
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import UserInfo from '../components/UserInfo.js';
 import {
   config,
@@ -27,6 +27,7 @@ import {
 } from '../utils/variable.js'
 
 import './index.css';
+
 
 //---------------------------
 //      popups validation
@@ -170,7 +171,7 @@ const profileForm = new PopupWithForm(popupProfile, {
 profileForm.setEventListeners();
 
 
-const openPopupConfirm = new PopupWithConfirm(popupConfirm)
+const openPopupConfirm = new PopupWithConfirmation(popupConfirm)
 openPopupConfirm.setEventListeners();
 
 /* ----- end class unit section ----- */

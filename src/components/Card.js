@@ -30,7 +30,7 @@ export default class Card {
     const likeCounter = this._card.querySelector('.element__like-button_counter')
 
     popupImage.src = this._link; // находим изображение и присваиваем ссылку на параметр
-    popupImage.alt = this._name; // устанавливаем аттрибут альт для картинки с названием нейма
+    popupImage.alt = this._name; // устанавливаем атрибут альт для картинки с названием нейма
     popupImageText.textContent = this._name; // находим титл и присваиваем текст на параметр функции
     likeCounter.textContent = `${this._likes.length}`; //вывести длину массива как значение количества лайков
 

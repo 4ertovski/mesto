@@ -1,17 +1,16 @@
-import Popup from "./Popup.js";
+import Popup from './Popup.js';
 
 export default class PopupWithImage extends Popup {
-  constructor(popupSelector) {
-    super(popupSelector);
-    this._image = this._popup.querySelector(".popup__item");
-    this._name = this._popup.querySelector(".popup__item-subject");
+  constructor(popupElement){
+    super(popupElement);
+    this._title = this._popup.querySelector('.popup__item');
+    this._image = this._popup.querySelector('.popup__item-subject');
   }
-  //перезаписывает родительский метод open и получает картинку с подписью
 
-  open(data) {
+  open(name, link){
     super.open();
-    this._image.src = data.src;
-    this._image.alt = data.alt;
-    this._name.textContent = data.alt;
+    this._title.textContent = name;
+    this._image.alt = name;
+    this._image.src = link;
   }
 }
